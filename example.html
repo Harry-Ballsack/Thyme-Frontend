@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thyme</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+    <script src="js/defloc.js"></script>
+    <script src="js/stomata.js"></script>
+</head>
+<body>
+    <h1>Thyme</h1>
+
+    <input type="email" id="login_fld">
+    <input type="password" id="pass_fld">
+    <input type="button" id="login_btn" value="Login">
+
+    <p><b>Name: </b><span id="name_lbl"/></p>
+    <p><b>Stations: </b><span id="stations_lbl"/></p>
+
+    <h2>Station <span id="station_lbl"/></h2>
+    <p><b>State: </b><span id="state_lbl"/></p>
+    <table style="border: 1px solid #000000;">
+        <thead>
+            <tr>
+                <td>Time</td>
+                <td>Moisture</td>
+                <td>Temperature</td>
+                <td>Tank Empty</td>
+            </tr>
+        </thead>
+        <tbody id="data_div"></tbody>
+    </table>
+
+    <script src="js/example.js"></script>
+</body>
+</html>
