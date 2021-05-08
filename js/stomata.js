@@ -33,7 +33,7 @@ async function get_stations(login, pass) {
 }
 
 async function get_station(id, login, pass) {
-    const resp = await fetch("https://stomata.undertheprinter.com/v1/stations/" + id, {
+    const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations/" + id, {
         headers: {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         }
@@ -43,7 +43,7 @@ async function get_station(id, login, pass) {
 }
 
 async function get_data(id, login, pass) {
-    const resp = await fetch("https://stomata.undertheprinter.com/v1/stations/" + id + "/data", {
+    const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations/" + id + "/data", {
         headers: {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         }
@@ -53,7 +53,7 @@ async function get_data(id, login, pass) {
 }
 
 async function get_state(id, login, pass) {
-    const resp = await fetch("https://stomata.undertheprinter.com/v1/stations/" + id + "/state", {
+    const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations/" + id + "/state", {
         headers: {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         }
