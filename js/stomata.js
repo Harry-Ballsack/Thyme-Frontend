@@ -29,7 +29,7 @@ async function delete_user(login, pass) {
 }
 
 async function register_station(id, login, pass) {
-    const resp = await fetch("https://stomata.undertheprinter.com/v1/users" + login + "/stations", {
+    const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations", {
         method: "POST",
         headers: {
             "Authorization": "Basic " + btoa(login + ":" + pass)
