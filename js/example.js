@@ -11,12 +11,17 @@ const login_lbl = document.getElementById("login_lbl");
 const name_lbl = document.getElementById("name_lbl");
 const stations_lbl = document.getElementById("stations_lbl");
 
+const station_fld = document.getElementById("station_fld");
+const fetch_btn = document.getElementById("fetch_btn");
 const station_lbl = document.getElementById("station_lbl");
-const state_lbl = document.getElementById("state_lbl");
+const state_fld = document.getElementById("state_fld");
+const state_btn = document.getElementById("state_btn");
 const data_div = document.getElementById("data_div");
 
 register_btn.addEventListener("click", register);
 login_btn.addEventListener("click", login);
+fetch_btn.addEventListener("click", fetch_station);
+state_btn.addEventListener("click", state);
 
 async function register() {
     await create_user(reg_name_fld.value, reg_login_fld.value, reg_pass_fld.value);
@@ -33,11 +38,11 @@ async function login() {
     });
 }
 
-/*
-    get_station(stations[0], login_fld.value, pass_fld.value).then(d => station_lbl.textContent = d.name);
-    get_state(stations[0], login_fld.value, pass_fld.value).then(d => state_lbl.textContent = d);
+async function fetch_station() {
+    get_station(station_fld.value, login_fld.value, pass_fld.value).then(d => station_lbl.textContent = d.name);
+    get_state(station_fld.value, login_fld.value, pass_fld.value).then(d => state_fld.value = d);
 
-    const data = await get_data(stations[0], login_fld.value, pass_fld.value);
+    const data = await get_data(station_fld.value, login_fld.value, pass_fld.value);
     var table = "";
     for (var i = 0; i < data.length; i++) {
         table += "<tr>";
@@ -48,4 +53,8 @@ async function login() {
         table += "</tr>";
     }
     data_div.innerHTML = table;
-*/
+}
+
+async function state() {
+    await update_state(state_fld.value, station_fld.value, login_fld.value, pass_fld.value);
+}
