@@ -100,3 +100,15 @@ async function update_state(state, id, login, pass) {
         })
     });
 }
+
+async function update_conf(conf, id, login, pass) {
+    const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations/" + id, {
+        method: "PUT",
+        headers: {
+            "Authorization": "Basic " + btoa(login + ":" + pass)
+        },
+        body: JSON.stringify({
+            conf,
+        })
+    });
+}
