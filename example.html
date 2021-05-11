@@ -32,12 +32,14 @@
     <h2>Station</h2>
     <p>
         ID <input type="text" id="station_fld"><br>
+        <input type="button" id="add_btn" value="Add">
+        <input type="button" id="remove_btn" value="Remove">
         <input type="button" id="fetch_btn" value="Fetch">
         <p>
             <b>Name: </b><a id="station_lbl"></a><br>
             <b>State: </b><input type="text" id="state_fld">
             <input type="button" id="state_btn" value="Update"><br>
-            <b>Config: </b><input type="text" id="conf_fld">
+            <b>Config: </b><br><textarea type="text" rows="5" cols="60" id="conf_fld"></textarea><br>
             <input type="button" id="conf_btn" value="Update">
         </p>
         <table style="border: 1px solid #000000;">

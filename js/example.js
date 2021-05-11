@@ -12,6 +12,8 @@ const name_lbl = document.getElementById("name_lbl");
 const stations_lbl = document.getElementById("stations_lbl");
 
 const station_fld = document.getElementById("station_fld");
+const add_btn = document.getElementById("add_btn");
+const remove_btn = document.getElementById("remove_btn");
 const fetch_btn = document.getElementById("fetch_btn");
 const station_lbl = document.getElementById("station_lbl");
 const state_fld = document.getElementById("state_fld");
@@ -22,6 +24,8 @@ const data_div = document.getElementById("data_div");
 
 register_btn.addEventListener("click", register);
 login_btn.addEventListener("click", login);
+add_btn.addEventListener("click", add_station);
+remove_btn.addEventListener("click", remove_station);
 fetch_btn.addEventListener("click", fetch_station);
 state_btn.addEventListener("click", state);
 conf_btn.addEventListener("click", conf);
@@ -44,7 +48,7 @@ async function login() {
 async function fetch_station() {
     get_station(station_fld.value, login_fld.value, pass_fld.value).then(d => {
         station_lbl.textContent = d.name;
-        conf_fld.value = d.conf;
+        conf_fld.textContent = d.conf;
     });
     get_state(station_fld.value, login_fld.value, pass_fld.value).then(d => state_fld.value = d);
 
@@ -61,10 +65,24 @@ async function fetch_station() {
     data_div.innerHTML = table;
 }
 
+async function add_station() {
+    await register_station(station_fld.value, login_fld.value, pass_fld.value);
+    get_stations(login_fld.value, pass_fld.value).then(d => {
+        stations_lbl.textContent = d.join(", ");
+    });
+}
+
+async function remove_station() {
+    await delete_station(station_fld.value, login_fld.value, pass_fld.value);
+    get_stations(login_fld.value, pass_fld.value).then(d => {
+        stations_lbl.textContent = d.join(", ");
+    });
+}
+
 async function state() {
     await update_state(state_fld.value, station_fld.value, login_fld.value, pass_fld.value);
 }
 
 async function conf() {
-    await update_conf(conf_fld.value, station_fld.value, login_fld.value, pass_fld.value);
+    await update_conf(conf_fld.textContent, station_fld.value, login_fld.value, pass_fld.value);
 }
