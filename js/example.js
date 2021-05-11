@@ -16,8 +16,8 @@ const fetch_btn = document.getElementById("fetch_btn");
 const station_lbl = document.getElementById("station_lbl");
 const state_fld = document.getElementById("state_fld");
 const state_btn = document.getElementById("state_btn");
-const conf_fld = document.getElementById("state_fld");
-const conf_btn = document.getElementById("state_btn");
+const conf_fld = document.getElementById("conf_fld");
+const conf_btn = document.getElementById("conf_btn");
 const data_div = document.getElementById("data_div");
 
 register_btn.addEventListener("click", register);
