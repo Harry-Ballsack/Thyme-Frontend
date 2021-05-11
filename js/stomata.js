@@ -35,7 +35,7 @@ async function register_station(id, login, pass) {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         },
         body: JSON.stringify({
-            id,
+            "id": parseInt(id)
         })
     });
 }
