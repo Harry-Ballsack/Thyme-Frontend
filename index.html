@@ -2,87 +2,51 @@
 <html>
 	<head>
 		<title>Thyme</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
-		<link href="css/style.css" rel="stylesheet">
-        <script src="js/defloc.js"></script>
+		<meta charset="UTF-8">
+		<script src="js/defloc.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
-		<div id="page">
-			<header id="header">
-				<div id="header-inner">	
-					<div id="logo">
-						<h1><a href="#">Thyme<span> Project</span></a></h1>
-					</div>
-					<div id="top-nav">
-						<ul>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Help</a></li>
-						</ul>
-					</div>
-					<div class="clr"></div>
-				</div>
-			</header>
-			<div class="feature">
-				<div class="feature-inner">
-				<h1></h1>
-				</div>
-			</div>
-		
-	
-			<div id="content">
-				<div id="content-inner">
-				
-					<main id="contentbar">
-						<div class="article">
-							<p id="sensorvalue"></p>
-						</div>
-					</main>
-					
-					<nav id="sidebar">
-						<div class="widget">
-							<h3>Left heading</h3>
-							<ul>
-							<li><a href="#">Link 1</a></li>
-							<li><a href="#">Link 2</a></li>
-							<li><a href="#">Link 3</a></li>
-							<li><a href="#">Link 4</a></li>
-							<li><a href="#">Link 5</a></li>
-							</ul>
-						</div>
-					</nav>
-					
-					<div class="clr"></div>
-				</div>
-			</div>
-		
-			<div id="footerblurb">
-				<div id="footerblurb-inner">
-				
-					<div class="column">
-						<h2><span>Heading</span></h2>
-						<p>TestTestTest</p>
-					</div>	
-					<div class="column">
-						<h2><span>Heading</span></h2>
-						<p>TestTestTest</p>
-					</div>
-					<div class="column">
-						<h2><span>Heading</span></h2>
-						<p>TestTestTest</p>
-					</div>	
-					
-					<div class="clr"></div>
-				</div>
-			</div>
-			<footer id="footer">
-				<div id="footer-inner">
-					<p>&copy; Copyright <a href="#">Your Site</a> &#124; <a href="#">Terms of Use</a> &#124; <a href="#">Privacy Policy</a></p>
-					<div class="clr"></div>
-				</div>
-			</footer>
+		<div id="titleBar" class="title">
+			<h1 id="Thyme" class="title">Thyme</h1>
 		</div>
+		
+		<div id="dataView" class="displayView">
+			
+			<div id="emptyMeterWater" class="emptyMeter" style="background-color:#8cc0ff;">
+				<div id="meterFillWater" class="meterFill"></div>
+			</div>
+			
+			<div id="emptyMeterTemp" class="emptyMeter" style="background-color:#ff7d7d;">
+				<div id="meterFillTemp" class="meterFill"></div>
+			</div>
+			
+			
+			<p id="feuchtTxt" class="dataDisplay">Feuchtigkeit: 
+				<span id="feuchtVar" class="inherit">loading...</span>
+			</p>
+			
+			<p id="tempTxt" class="dataDisplay">Temperatur:
+				<span id="tempVar" class="inherit">loading...</span>
+			</p>
+			<p id="wasserstandTxt" class="dataDisplay">Wasserstand:
+				<span id="wassertandVar" class="inherit">loading...</span>
+			</p>
+			
+			<div class="chartContainer">
+				<canvas id="dataChart"></canvas>
+			</div>
+			
+		</div>
+		
+		<div id="sideBar" class="sideBar">
+			<div id="indicator1" class="circle" style="color:red;"></div>
+			<div id="indicator2" class="circle" style="color:blue;"></div>
+		</div>
+
+		
+		<script src = "js/srcs.js"></script>
+	
 	</body>
 </html>
