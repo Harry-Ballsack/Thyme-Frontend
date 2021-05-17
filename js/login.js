@@ -9,10 +9,7 @@ async function login() {
         console.log(d.name);
 		
     })
-	.catch( error => {
-		console.log('there has been an issue my g');
-		console.log(error);
-	});
+	.catch( error => alert(error));
 	
     get_stations(userFld.value, passwdFld.value).then(d => {
         console.log(d.join(", "));
