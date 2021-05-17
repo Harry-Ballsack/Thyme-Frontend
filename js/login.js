@@ -10,6 +10,7 @@ async function login() {
 		
     })
 	.catch( error => {
+		console.log('there has been an issue my g');
 		console.log(error);
 	});
 	
