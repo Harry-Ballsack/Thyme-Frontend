@@ -13,7 +13,7 @@ async function login() {
 			return;
 		}
         console.log(d.name);
-    })
+    )
 	.catch(function(e) {
 		console.log('Error: ' + e);
 	});
