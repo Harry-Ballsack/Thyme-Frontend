@@ -6,12 +6,12 @@
 		<script src="js/defloc.js"></script>
 		<script src="js/stomata.js"></script>
 		<script>
-			let name = localStorage.getItem("name");
-			let id = localStorage.getItem("stationID");
+			let name = sessionStorage.getItem("name");
+			let id = sessionStorage.getItem("stationID");
 			
 			if(name && id) {
-				location.href = "index.html";
 				console.log("name: " + name + " stationid: " + stationID);
+				location.href = "index.html";
 			}
 		</script>
 		
