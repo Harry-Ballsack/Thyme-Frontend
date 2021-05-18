@@ -9,7 +9,7 @@
 			let name = localStorage.getItem("name");
 			let id = localStorage.getItem("stationID");
 			
-			if(name != null && id != null) {
+			if(name && id) {
 				location.href = "index.html";
 				console.log("name: " + name + " stationid: " + stationID);
 			}
