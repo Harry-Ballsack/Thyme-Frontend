@@ -6,13 +6,13 @@
 		<script src="js/defloc.js"></script>
 		<script src="js/stomata.js"></script>
 		<script>
-			try { 
-				localStorage.getItem("name");
-				localStorage.getItem("stationID");
+			let name = localStorage.getItem("name");
+			let id = localStorage.getItem("stationID");
+			
+			if(name != null && id != null) {
 				location.href = "index.html";
 				console.log("name: " + name + " stationid: " + stationID);
 			}
-			catch(err) { console.log("no user logged in");}
 		</script>
 		
 		<link rel="stylesheet" href="css/style.css">
