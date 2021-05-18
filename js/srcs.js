@@ -1,12 +1,14 @@
 const usrName = localStorage.getItem("name");
 const stationID = localStorage.getItem("stationID");
+var stationData = getStationData(usrName);
+console.log(stationData);
 
 document.getElementById('Title').textContent = (usrName + '\'s Station');
 
 
 
-console.log("name: " + sessionStorage.getItem("name"));
-console.log("name: " + sessionStorage.getItem("passwd"));
+console.log(usrName);
+console.log(stationID);
 var datalist = [1,3,2,4,2,3,1,2,3,1];
 var chart = document.getElementById('dataChart').getContext('2d');
 var myChart = new Chart(chart, {
