@@ -5,6 +5,15 @@
 		<meta charset="UTF-8">
 		<script src="js/defloc.js"></script>
 		<script src="js/stomata.js"></script>
+		<script>
+			try { 
+				localStorage.getItem("name");
+				localStorage.getItem("stationID");
+				location.href = "index.html"
+			}
+			catch(err) { console.log("no user logged in");}
+		</script>
+		
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
