@@ -1,40 +1,48 @@
+const usrName = localStorage.getItem("name");
+const stationID = localStorage.getItem("stationID");
+
+document.getElementById('Title').textContent = (usrName + '\'s Station');
+
+
+
+console.log("name: " + sessionStorage.getItem("name"));
+console.log("name: " + sessionStorage.getItem("passwd"));
 var datalist = [1,3,2,4,2,3,1,2,3,1];
 var chart = document.getElementById('dataChart').getContext('2d');
-			var myChart = new Chart(chart, {
-				type: 'line',
-				data: {
-					labels: [1,2,3,4,5,6,7,8,9,10],
-					datasets: [{
-						label: 'Temperatur',
-						data: [1,2,3,2,6,2,7,2,8,7],
-						pointRadius: 0,
-						borderColor: '#ff7d7d'
-					},
-					{
-						label: 'Feuchtigkeit',
-						data: datalist,
-						pointRadius: 0,
-						borderColor: '#8cc0ff'
-					}]
-				},
-				options: {
-					responsive: true,
-					maintainAspectRatio: false,
-					interaction: {
-						mode: 'nearest',
-						intersect: false
-					},
-					scales:
-					{
-						y: {
-							type: 'linear',
-							grace: '80%'
-						}
-					}
-				}
-			});
+var myChart = new Chart(chart, {
+	type: 'line',
+	data: {
+		labels: [1,2,3,4,5,6,7,8,9,10],
+		datasets: [{
+			label: 'Temperatur',
+			data: [1,2,3,2,6,2,7,2,8,7],
+			pointRadius: 0,
+			borderColor: '#ff7d7d'
+		},
+		{
+			label: 'Feuchtigkeit',
+			data: datalist,
+			pointRadius: 0,
+			borderColor: '#8cc0ff'
+		}]
+	},
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		interaction: {
+			mode: 'nearest',
+			intersect: false
+		},
+		scales:
+		{
+			y: {
+				type: 'linear',
+				grace: '80%'
+			}
+		}
+	}
+});
 
-console.log("the script does in fact run");
 var i = 0;
 setMeterLevel( 'meterFillWater', 50);
 setInterval(changeMeterLevel, 10);
@@ -63,9 +71,9 @@ function rotArr( arr )
 	return arr;
 }
 
-async function getStationData( stationID )
+async function getStationData( stID )
 {
-	const resp = await fetch("https://stomata.undertheprinter.com/v1/stations/" + stationID, {
+	const resp = await fetch("https://stomata.undertheprinter.com/v1/stations/" + stID, {
         headers: {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         }
