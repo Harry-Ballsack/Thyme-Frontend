@@ -1,7 +1,5 @@
-const usrName = localStorage.getItem("name");
-const stationID = localStorage.getItem("stationID");
-var stationData = getStationData(usrName);
-console.log(stationData);
+const usrName = sessionStorage.getItem("name");
+const stationID = sessionStorage.getItem("stationID");
 
 document.getElementById('Title').textContent = (usrName + '\'s Station');
 
@@ -71,15 +69,4 @@ function rotArr( arr )
 	arr[0] = arr[arr.length-1];
 	arr[arr.length-1] = temp;
 	return arr;
-}
-
-async function getStationData( stID )
-{
-	const resp = await fetch("https://stomata.undertheprinter.com/v1/stations/" + stID, {
-        headers: {
-            "Authorization": "Basic " + btoa(login + ":" + pass)
-        }
-    });
-    const data = await resp.json();
-    return data;
 }
