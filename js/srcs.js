@@ -1,16 +1,20 @@
 const usrName = sessionStorage.getItem("name");
+console.log("name" + usrName);
 const stationID = sessionStorage.getItem("stationID");
+console.log("id" + stationID);
 const pass = sessionStorage.getItem("passwd");
+consold.log("pass" + pass)
 let stationData = get_data(stationID, usrName, pass);
+console.log("data" + stationData);
 
 
 document.getElementById('Title').textContent = (usrName + '\'s Station');
 
 
 
-console.log(usrName);
-console.log(stationID);
-console.log(stationData);
+
+
+
 
 var datalist = [1,3,2,4,2,3,1,2,3,1];
 var chart = document.getElementById('dataChart').getContext('2d');
