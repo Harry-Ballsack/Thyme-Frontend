@@ -36,6 +36,7 @@ async function login() {
 		console.log(error);
 		loginAlert.textContent = "invalid password or username";
 	});
+	console.log("login: " + login);
 	if(login == 2) {
 		sessionStorage.setItem("passwd", passwdFld.value);
 		console.log("pass: " + sessionStorage.getItem("passwd"));
