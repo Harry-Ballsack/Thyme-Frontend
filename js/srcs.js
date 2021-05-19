@@ -4,7 +4,13 @@ const stationID = sessionStorage.getItem("stationID");
 console.log("id" + stationID);
 const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass)
-let stationData = await get_data(stationID, usrName, pass);
+
+getStationData(stationID, usrName, pass);
+
+async function getStationData(s, n, p) {
+	let stationData = await get_data(s, n, p);
+	console.log(stationData);
+}
 console.log(stationData);
 
 
