@@ -3,7 +3,7 @@ console.log("name" + usrName);
 const stationID = sessionStorage.getItem("stationID");
 console.log("id" + stationID);
 const pass = sessionStorage.getItem("passwd");
-consold.log("pass" + pass)
+console.log("pass" + pass)
 let stationData = get_data(stationID, usrName, pass);
 console.log("data" + stationData);
 
