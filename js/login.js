@@ -17,8 +17,12 @@ async function login() {
 		get_user(userFld.value, passwdFld.value),
 		get_stations(userFld.value, passwdFld.value)
 	]);
-	console.log(userData[0]);
+	console.log(userData[0].name);
 	console.log(userData[1].join(", "));
+	
+	sessionStorage.setItem("name", userData[0].name);
+	sessionStorage.setItem("stationID", userdata[1][0]);
+	sessionStorage.setItem("passwd", passwdFld.value);
     /*get_user(userFld.value, passwdFld.value).then(d => {
         console.log(d.name);
 		sessionStorage.setItem("name", d.name);
