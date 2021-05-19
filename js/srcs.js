@@ -6,12 +6,23 @@ const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass);
 const usrID = sessionStorage.getItem("userID");
 
+var stationData = getStationData(stationID, usrID, pass);
+var recentData = [stationData[stationData.length - 1,
+					stationData[stationData.length - 2,
+					stationData[stationData.length - 3,
+					stationData[stationData.length - 4,
+					stationData[stationData.length - 5,
+					stationData[stationData.length - 6,
+					stationData[stationData.length - 7,
+					stationData[stationData.length - 8,
+					stationData[stationData.length - 9,
+					stationData[stationData.length - 10]
+
 async function getStationData(s, n, p) {
-	let stationData = await get_data(s, n, p);
-	console.log(stationData);
+	let statData = await get_data(s, n, p);
+	console.log(statData);
 }
 
-getStationData(stationID, usrID, pass);
 
 document.getElementById('Title').textContent = (usrName + '\'s Station');
 
@@ -29,7 +40,7 @@ var myChart = new Chart(chart, {
 		labels: [1,2,3,4,5,6,7,8,9,10],
 		datasets: [{
 			label: 'Temperatur',
-			data: [1,2,3,2,6,2,7,2,8,7],
+			data: recentData/*[1,2,3,2,6,2,7,2,8,7]*/,
 			pointRadius: 0,
 			borderColor: '#ff7d7d'
 		},
