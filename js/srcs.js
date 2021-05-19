@@ -17,10 +17,24 @@ var recentData = [stationData[stationData.length - 1],
 					stationData[stationData.length - 8],
 					stationData[stationData.length - 9],
 					stationData[stationData.length - 10]];
+					
+console.log(recentData);
 
-async function getStationData(s, n, p) {
+async function displayStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
 	console.log(statData);
+	let newData = [statData[stationData.length - 1],
+					statData[stationData.length - 2],
+					statData[stationData.length - 3],
+					statData[stationData.length - 4],
+					statData[stationData.length - 5],
+					statData[stationData.length - 6],
+					statData[stationData.length - 7],
+					statData[stationData.length - 8],
+					statData[stationData.length - 9],
+					statData[stationData.length - 10]];
+	myChart.data.datasets.data = newData;
+	myChart.update();
 	return statData;
 }
 
@@ -41,7 +55,7 @@ var myChart = new Chart(chart, {
 		labels: [1,2,3,4,5,6,7,8,9,10],
 		datasets: [{
 			label: 'Temperatur',
-			data: recentData/*[1,2,3,2,6,2,7,2,8,7]*/,
+			data: [1,2,3,2,6,2,7,2,8,7],
 			pointRadius: 0,
 			borderColor: '#ff7d7d'
 		},
