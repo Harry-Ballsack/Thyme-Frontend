@@ -5,13 +5,12 @@ console.log("id" + stationID);
 const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass)
 
-getStationData(stationID, usrName, pass);
+//getStationData(stationID, usrName, pass);
 
 async function getStationData(s, n, p) {
 	let stationData = await get_data(s, n, p);
 	console.log(stationData);
 }
-console.log(stationData);
 
 
 document.getElementById('Title').textContent = (usrName + '\'s Station');
