@@ -38,6 +38,7 @@ async function login() {
 	});
 	if(login == 2) {
 		sessionStorage.setItem("passwd", passwdFld.value);
+		console.log("pass: " + sessionStorage.getItem("passwd"));
 		location.href = "index.html";
 	}
 }
