@@ -34,7 +34,7 @@ async function displayStationData(s, n, p) {
 					statData[statData.length - 9].temperature,
 					statData[statData.length - 10].temperature];
 	console.log(newData);
-	myChart.data.datasets.[0].data = newData;
+	myChart.data.datasets[0].data = newData;
 	myChart.update();
 	return statData;
 }
