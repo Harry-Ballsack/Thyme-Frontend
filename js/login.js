@@ -17,12 +17,18 @@ async function login() {
 		get_user(userFld.value, passwdFld.value),
 		get_stations(userFld.value, passwdFld.value)
 	]);
-	console.log(userData[0].name);
-	console.log(userData[1].join(", "));
 	
-	sessionStorage.setItem("name", userData[0].name);
-	sessionStorage.setItem("stationID", userData[1][0]);
+	let userName = userData[0].name;
+	let stations = userData[1];
+	console.log(userName);
+	console.log(stations.join(", "));
+	
+	sessionStorage.setItem("name", userName);
+	sessionStorage.setItem("stationID", stations[0]);
 	sessionStorage.setItem("passwd", passwdFld.value);
+	if(userName && stations) {
+		location.href = "index.html";
+	}
     /*get_user(userFld.value, passwdFld.value).then(d => {
         console.log(d.name);
 		sessionStorage.setItem("name", d.name);
