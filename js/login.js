@@ -24,32 +24,10 @@ async function login() {
 	console.log(stations.join(", "));
 	
 	sessionStorage.setItem("name", userName);
+	sessionStorage.setItem("userID", userFld.value);
 	sessionStorage.setItem("stationID", stations[0]);
 	sessionStorage.setItem("passwd", passwdFld.value);
 	if(userName && stations) {
 		location.href = "index.html";
 	}
-    /*get_user(userFld.value, passwdFld.value).then(d => {
-        console.log(d.name);
-		sessionStorage.setItem("name", d.name);
-    })
-	.catch( error => {
-		console.log('issue fetching username');
-		console.log(error);
-		loginAlert.textContent = "invalid password or username";
-	});
-	
-    get_stations(userFld.value, passwdFld.value).then(d => {
-        console.log(d.join(", "));
-		console.log(d[0]);
-		sessionStorage.setItem("stationID", d[0]);
-    })
-	.catch( error => {
-		console.log("issue fetching password");
-		console.log(error);
-		loginAlert.textContent = "invalid password or username";
-	});
-	sessionStorage.setItem("passwd", passwdFld.value);
-	console.log("pass: " + sessionStorage.getItem("passwd"));
-	location.href = "index.html";*/
 }
