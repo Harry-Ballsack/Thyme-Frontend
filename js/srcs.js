@@ -36,18 +36,18 @@ async function displayStationData(s, n, p) {
 	console.log(newDataTemp);
 	myChart.data.datasets[0].data = newDataTemp;
 	
-	let newDataMoist = [statData[statData.length - 1].temperature,
-					statData[statData.length - 2].temperature,
-					statData[statData.length - 3].temperature,
-					statData[statData.length - 4].temperature,
-					statData[statData.length - 5].temperature,
-					statData[statData.length - 6].temperature,
-					statData[statData.length - 7].temperature,
-					statData[statData.length - 8].temperature,
-					statData[statData.length - 9].temperature,
-					statData[statData.length - 10].temperature];
+	let newDataMoist = [statData[statData.length - 1].moisture,
+					statData[statData.length - 2].moisture,
+					statData[statData.length - 3].moisture,
+					statData[statData.length - 4].moisture,
+					statData[statData.length - 5].moisture,
+					statData[statData.length - 6].moisture,
+					statData[statData.length - 7].moisture,
+					statData[statData.length - 8].moisture,
+					statData[statData.length - 9].moisture,
+					statData[statData.length - 10].moisture];
 	console.log(newDataMoist);
-	myChart.data.datasets[0].data = newDataMoist;
+	myChart.data.datasets[1].data = newDataMoist;
 	myChart.update();
 	return statData;
 }
