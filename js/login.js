@@ -13,15 +13,15 @@ async function logintest() {
 }
 
 async function login() {
-    get_user(userFld.value, passwdFld.value).then(d => {
+	let userData = await Promise.all([
+		get_user(userFld.value, passwdFld.value),
+		get_stations(userFld.value, passwdFld.value)
+	]);
+	console.log(userData[0]);
+	console.log(userData[1].join(", "));
+    /*get_user(userFld.value, passwdFld.value).then(d => {
         console.log(d.name);
 		sessionStorage.setItem("name", d.name);
-		console.log(d.join(", "));
-		console.log(d[0]);
-		sessionStorage.setItem("stationID", d[0]);
-		sessionStorage.setItem("passwd", passwdFld.value);
-		console.log("pass: " + sessionStorage.getItem("passwd"));
-		location.href = "index.html";
     })
 	.catch( error => {
 		console.log('issue fetching username');
@@ -29,13 +29,17 @@ async function login() {
 		loginAlert.textContent = "invalid password or username";
 	});
 	
-    /*get_stations(userFld.value, passwdFld.value).then(d => {
-        
+    get_stations(userFld.value, passwdFld.value).then(d => {
+        console.log(d.join(", "));
+		console.log(d[0]);
+		sessionStorage.setItem("stationID", d[0]);
     })
 	.catch( error => {
 		console.log("issue fetching password");
 		console.log(error);
 		loginAlert.textContent = "invalid password or username";
-	});*/
-	
+	});
+	sessionStorage.setItem("passwd", passwdFld.value);
+	console.log("pass: " + sessionStorage.getItem("passwd"));
+	location.href = "index.html";*/
 }
