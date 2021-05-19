@@ -36,7 +36,7 @@ async function displayStationData(s, n, p) {
 	myChart.data.datasets[1].data = newDataMoist;
 	myChart.update();
 	
-	setMeterLevel('meterFillWater', statData[statData.length - 1].moisture);
+	setMeterLevel('meterFillWater', (statData[statData.length - 1].moisture)/10);
 	setMeterLevel('meterFillTemp', statData[statData.length - 1].temperature);
 	
 	return statData;
