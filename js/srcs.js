@@ -23,29 +23,29 @@ console.log(recentData);*/
 async function displayStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
 	console.log(statData);
-	let newDataTemp = [statData[statData.length - 1].temperature,
-					statData[statData.length - 2].temperature,
-					statData[statData.length - 3].temperature,
-					statData[statData.length - 4].temperature,
-					statData[statData.length - 5].temperature,
-					statData[statData.length - 6].temperature,
-					statData[statData.length - 7].temperature,
-					statData[statData.length - 8].temperature,
-					statData[statData.length - 9].temperature,
-					statData[statData.length - 10].temperature];
+	let newDataTemp = [statData[statData.length - 10].temperature,
+					statData[statData.length - 20].temperature,
+					statData[statData.length - 30].temperature,
+					statData[statData.length - 40].temperature,
+					statData[statData.length - 50].temperature,
+					statData[statData.length - 60].temperature,
+					statData[statData.length - 70].temperature,
+					statData[statData.length - 80].temperature,
+					statData[statData.length - 90].temperature,
+					statData[statData.length - 100].temperature];
 	console.log(newDataTemp);
 	myChart.data.datasets[0].data = newDataTemp;
 	
-	let newDataMoist = [statData[statData.length - 1].moisture,
-					statData[statData.length - 2].moisture,
-					statData[statData.length - 3].moisture,
-					statData[statData.length - 4].moisture,
-					statData[statData.length - 5].moisture,
-					statData[statData.length - 6].moisture,
-					statData[statData.length - 7].moisture,
-					statData[statData.length - 8].moisture,
-					statData[statData.length - 9].moisture,
-					statData[statData.length - 10].moisture];
+	let newDataMoist = [statData[statData.length - 10].moisture,
+					statData[statData.length - 20].moisture,
+					statData[statData.length - 30].moisture,
+					statData[statData.length - 40].moisture,
+					statData[statData.length - 50].moisture,
+					statData[statData.length - 60].moisture,
+					statData[statData.length - 70].moisture,
+					statData[statData.length - 80].moisture,
+					statData[statData.length - 90].moisture,
+					statData[statData.length - 100].moisture];
 	console.log(newDataMoist);
 	myChart.data.datasets[1].data = newDataMoist;
 	myChart.update();
