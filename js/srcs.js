@@ -7,16 +7,16 @@ console.log("pass" + pass);
 const usrID = sessionStorage.getItem("userID");
 
 var stationData = getStationData(stationID, usrID, pass);
-var recentData = [stationData[stationData.length - 1,
-					stationData[stationData.length - 2,
-					stationData[stationData.length - 3,
-					stationData[stationData.length - 4,
-					stationData[stationData.length - 5,
-					stationData[stationData.length - 6,
-					stationData[stationData.length - 7,
-					stationData[stationData.length - 8,
-					stationData[stationData.length - 9,
-					stationData[stationData.length - 10]
+var recentData = [stationData[stationData.length - 1],
+					stationData[stationData.length - 2],
+					stationData[stationData.length - 3],
+					stationData[stationData.length - 4],
+					stationData[stationData.length - 5],
+					stationData[stationData.length - 6],
+					stationData[stationData.length - 7],
+					stationData[stationData.length - 8],
+					stationData[stationData.length - 9],
+					stationData[stationData.length - 10]];
 
 async function getStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
