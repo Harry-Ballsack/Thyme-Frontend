@@ -58,7 +58,7 @@ var myChart = new Chart(chart, {
 
 var i = 0;
 setMeterLevel( 'meterFillWater', 50);
-setInterval(changeMeterLevel, 10);
+setInterval(changeMeterLevel, 1000);
 
 
 function changeMeterLevel()
