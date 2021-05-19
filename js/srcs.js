@@ -38,6 +38,8 @@ async function displayStationData(s, n, p) {
 	return statData;
 }
 
+displayStationData(stationID, usrID, pass);
+
 
 document.getElementById('Title').textContent = (usrName + '\'s Station');
 
