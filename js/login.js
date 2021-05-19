@@ -13,9 +13,11 @@ async function logintest() {
 }
 
 async function login() {
+	let login = 0;
     get_user(userFld.value, passwdFld.value).then(d => {
         console.log(d.name);
 		sessionStorage.setItem("name", d.name);
+		login++;
     })
 	.catch( error => {
 		console.log('there has been an issue my g');
@@ -27,6 +29,15 @@ async function login() {
         console.log(d.join(", "));
 		console.log(d[0]);
 		sessionStorage.setItem("stationID", d[0]);
+		login++;
+    })
+	.catch( error => {
+		console.log("issue fetching password");
+		console.log(error);
+		loginAlert.textContent = "invalid password or username";
+	});
+	if(login == 2) {
+		sessionStorage.setItem("passwd", passwdFld.value);
 		location.href = "index.html";
-    });
+	}
 }
