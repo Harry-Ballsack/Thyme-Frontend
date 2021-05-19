@@ -89,3 +89,14 @@ h1
 	background-color: #c5fab2;
 	border-radius: 5px;
 }
+
+.meterLbl
+{
+	writing-mode: tb-rl;
+	transform: rotate(-180deg);
+	vertical-align: bottom;
+}
+
+
+
+
