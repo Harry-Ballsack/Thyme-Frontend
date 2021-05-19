@@ -21,6 +21,7 @@ var recentData = [stationData[stationData.length - 1],
 async function getStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
 	console.log(statData);
+	return statData;
 }
 
 
