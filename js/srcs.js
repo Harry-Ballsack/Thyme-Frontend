@@ -6,20 +6,6 @@ const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass);
 const usrID = sessionStorage.getItem("userID");
 
-/*var stationData = getStationData(stationID, usrID, pass);
-var recentData = [stationData[stationData.length - 1],
-					stationData[stationData.length - 2],
-					stationData[stationData.length - 3],
-					stationData[stationData.length - 4],
-					stationData[stationData.length - 5],
-					stationData[stationData.length - 6],
-					stationData[stationData.length - 7],
-					stationData[stationData.length - 8],
-					stationData[stationData.length - 9],
-					stationData[stationData.length - 10]];
-					
-console.log(recentData);*/
-
 async function displayStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
 	console.log(statData);
@@ -49,6 +35,10 @@ async function displayStationData(s, n, p) {
 	console.log(newDataMoist);
 	myChart.data.datasets[1].data = newDataMoist;
 	myChart.update();
+	
+	setMeterLevel('meterFillWater', statData[statData.length - 1].moisture);
+	setMeterLevel('meterFillTemp', statData[statData.length - 1].temperature);
+	
 	return statData;
 }
 
@@ -99,30 +89,10 @@ var myChart = new Chart(chart, {
 	}
 });
 
-var i = 0;
-setMeterLevel( 'meterFillWater', 50);
-setInterval(changeMeterLevel, 1000);
 
-
-function changeMeterLevel()
-{
-	i += 0.1;
-	i %= 100;
-	setMeterLevel('meterFillWater', i);
-	setMeterLevel('meterFillTemp', 100-i);
-	console.log("changeMeterLevel");
-}
 
 function setMeterLevel( meter, percentage )
 {
 	document.getElementById(meter).style.setProperty('height', percentage + '%');
 }
 
-function rotArr( arr )
-{
-	console.log('rotArr');
-	let temp = arr[0];
-	arr[0] = arr[arr.length-1];
-	arr[arr.length-1] = temp;
-	return arr;
-}
