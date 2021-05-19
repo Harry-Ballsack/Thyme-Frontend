@@ -23,16 +23,16 @@ console.log(recentData);*/
 async function displayStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
 	console.log(statData);
-	let newData = [statData[stationData.length - 1],
-					statData[stationData.length - 2],
-					statData[stationData.length - 3],
-					statData[stationData.length - 4],
-					statData[stationData.length - 5],
-					statData[stationData.length - 6],
-					statData[stationData.length - 7],
-					statData[stationData.length - 8],
-					statData[stationData.length - 9],
-					statData[stationData.length - 10]];
+	let newData = [statData[statData.length - 1],
+					statData[statData.length - 2],
+					statData[statData.length - 3],
+					statData[statData.length - 4],
+					statData[statData.length - 5],
+					statData[statData.length - 6],
+					statData[statData.length - 7],
+					statData[statData.length - 8],
+					statData[statData.length - 9],
+					statData[statData.length - 10]];
 	myChart.data.datasets.data = newData;
 	myChart.update();
 	return statData;
