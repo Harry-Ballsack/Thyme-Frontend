@@ -23,7 +23,7 @@ console.log(recentData);*/
 async function displayStationData(s, n, p) {
 	let statData = await get_data(s, n, p);
 	console.log(statData);
-	let newData = [statData[statData.length - 1].temperature,
+	let newDataTemp = [statData[statData.length - 1].temperature,
 					statData[statData.length - 2].temperature,
 					statData[statData.length - 3].temperature,
 					statData[statData.length - 4].temperature,
@@ -33,8 +33,21 @@ async function displayStationData(s, n, p) {
 					statData[statData.length - 8].temperature,
 					statData[statData.length - 9].temperature,
 					statData[statData.length - 10].temperature];
-	console.log(newData);
-	myChart.data.datasets[0].data = newData;
+	console.log(newDataTemp);
+	myChart.data.datasets[0].data = newDataTemp;
+	
+	let newDataMoist = [statData[statData.length - 1].temperature,
+					statData[statData.length - 2].temperature,
+					statData[statData.length - 3].temperature,
+					statData[statData.length - 4].temperature,
+					statData[statData.length - 5].temperature,
+					statData[statData.length - 6].temperature,
+					statData[statData.length - 7].temperature,
+					statData[statData.length - 8].temperature,
+					statData[statData.length - 9].temperature,
+					statData[statData.length - 10].temperature];
+	console.log(newDataMoist);
+	myChart.data.datasets[0].data = newDataMoist;
 	myChart.update();
 	return statData;
 }
@@ -58,13 +71,13 @@ var myChart = new Chart(chart, {
 		labels: [1,2,3,4,5,6,7,8,9,10],
 		datasets: [{
 			label: 'Temperatur',
-			data: [1,2,3,2,6,2,7,2,8,7],
+			data: [0,0,0,0,0,0,0,0,0,0],
 			pointRadius: 0,
 			borderColor: '#ff7d7d'
 		},
 		{
 			label: 'Feuchtigkeit',
-			data: datalist,
+			data: [0,0,0,0,0,0,0,0,0,0],
 			pointRadius: 0,
 			borderColor: '#8cc0ff'
 		}]
