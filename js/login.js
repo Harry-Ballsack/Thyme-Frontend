@@ -21,7 +21,7 @@ async function login() {
 	console.log(userData[1].join(", "));
 	
 	sessionStorage.setItem("name", userData[0].name);
-	sessionStorage.setItem("stationID", userdata[1][0]);
+	sessionStorage.setItem("stationID", userData[1][0]);
 	sessionStorage.setItem("passwd", passwdFld.value);
     /*get_user(userFld.value, passwdFld.value).then(d => {
         console.log(d.name);
