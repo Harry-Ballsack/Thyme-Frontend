@@ -2,7 +2,7 @@ const usrName = sessionStorage.getItem("name");
 console.log("name" + usrName);
 const stationIDs = sessionStorage.getItem("stationIDs");
 console.log("ids" + stationIDs);
-var currentStation = stationIDs[0];
+var currentStation = stationIDs.split(", ");
 console.log("station" + currentStation);
 const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass);
