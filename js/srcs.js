@@ -8,6 +8,41 @@ const PASS = sessionStorage.getItem("passwd");
 console.log("pass" + PASS);
 const USRID = sessionStorage.getItem("userID");
 
+var chart = document.getElementById('dataChart').getContext('2d');
+var myChart = new Chart(chart, {
+	type: 'line',
+	data: {
+		labels: [1,2,3,4,5,6,7,8,9,10],
+		datasets: [{
+			label: 'Temperatur',
+			data: [0,0,0,0,0,0,0,0,0,0],
+			pointRadius: 0,
+			borderColor: '#ff7d7d'
+		},
+		{
+			label: 'Feuchtigkeit',
+			data: [0,0,0,0,0,0,0,0,0,0],
+			pointRadius: 0,
+			borderColor: '#8cc0ff'
+		}]
+	},
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		interaction: {
+			mode: 'nearest',
+			intersect: false
+		},
+		scales:
+		{
+			y: {
+				type: 'linear',
+				grace: '80%'
+			}
+		}
+	}
+});
+
 setUserStations(STATIONIDS);
 setActiveStation(CURRENTSTATION, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
@@ -63,7 +98,7 @@ function setUserStations(IDs) {
 		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
 		stationList += "<a href=\"#\">" + IDs[i] + "</a>";
 		stationList += "</div></div>";
-		
+		console.log(IDs[i]);
 	}
 	statListField.innerHTML = stationList;
 	
@@ -72,41 +107,7 @@ function setUserStations(IDs) {
 	}
 }
 
-var datalist = [1,3,2,4,2,3,1,2,3,1];
-var chart = document.getElementById('dataChart').getContext('2d');
-var myChart = new Chart(chart, {
-	type: 'line',
-	data: {
-		labels: [1,2,3,4,5,6,7,8,9,10],
-		datasets: [{
-			label: 'Temperatur',
-			data: [0,0,0,0,0,0,0,0,0,0],
-			pointRadius: 0,
-			borderColor: '#ff7d7d'
-		},
-		{
-			label: 'Feuchtigkeit',
-			data: [0,0,0,0,0,0,0,0,0,0],
-			pointRadius: 0,
-			borderColor: '#8cc0ff'
-		}]
-	},
-	options: {
-		responsive: true,
-		maintainAspectRatio: false,
-		interaction: {
-			mode: 'nearest',
-			intersect: false
-		},
-		scales:
-		{
-			y: {
-				type: 'linear',
-				grace: '80%'
-			}
-		}
-	}
-});
+
 
 
 
