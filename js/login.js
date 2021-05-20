@@ -34,7 +34,7 @@ async function loginRequest() {
 	
 	sessionStorage.setItem("name", userName);
 	sessionStorage.setItem("userID", userFld.value);
-	sessionStorage.setItem("stationID", stations[0]);
+	sessionStorage.setItem("stationIDs", stations);
 	sessionStorage.setItem("passwd", passwdFld.value);
 	if(userName && stations) {
 		location.href = "index.html";
