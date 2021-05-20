@@ -18,6 +18,7 @@ async function login() {
 	} catch(error) {
 		loginAlert.textContent = "invalid password or username";
 	}
+}
 
 async function loginRequest() {
 	let userData = await Promise.all([
