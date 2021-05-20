@@ -1,6 +1,6 @@
 const usrName = sessionStorage.getItem("name");
 console.log("name" + usrName);
-const stationIDs = sessionStorage.getItem("stationIDs").split(", ");
+const stationIDs = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + stationIDs);
 var currentStation = stationIDs[0];
 console.log("station" + currentStation);
