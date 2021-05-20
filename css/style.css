@@ -128,3 +128,18 @@ h1
 {
 	height: 10%;
 }
+
+#newStatBtn
+{
+	border: none;
+	border-radius: 5px;
+	background-color: #b1ffa8;
+	color: grey;
+}
+
+#newStatBtn:hover
+{
+	background-color: #91ff85;
+	color: grey;
+}
+	

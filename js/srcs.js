@@ -85,8 +85,8 @@ async function displayStationData(id, login, pass) {
 	return statData;
 }
 
-function setActiveStation(id, login, pass) {
-	displayStationData(id, login, pass);
+async function setActiveStation(id, login, pass) {
+	let displayData = await displayStationData(id, login, pass);
 	for(let i = 0; i < STATIONIDS.length; i++) {
 		document.getElementById(STATIONIDS[i] + "w").style.setProperty("background-color", "grey");
 	}

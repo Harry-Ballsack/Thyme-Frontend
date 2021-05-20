@@ -5,13 +5,6 @@ const loginAlert = document.getElementById("loginError");
 
 loginBtn.addEventListener("click", login);
 
-async function logintest() {
-	sessionStorage.setItem("name", userFld.value);
-	sessionStorage.setItem("passwd", passwdFld.value);
-	console.log("name: " + sessionStorage.getItem("name"));
-	location.href = "index.html";
-}
-
 async function login() {
 	try {
 		loginRequest();
