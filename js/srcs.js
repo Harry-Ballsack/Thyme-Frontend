@@ -8,10 +8,11 @@ const PASS = sessionStorage.getItem("passwd");
 console.log("pass" + PASS);
 const USRID = sessionStorage.getItem("userID");
 
+setUserStations(STATIONIDS);
 setActiveStation(CURRENTSTATION, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
-setUserStations(STATIONIDS);
+
 
 async function displayStationData(id, login, pass) {
 	let statData = await get_data(id, login, pass);
