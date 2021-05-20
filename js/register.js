@@ -22,7 +22,7 @@ async function registerRequest() {
 	let pass1 = passwdFld1.value;
 	let pass2 = passwdFld2.value;
 	
-	if(pass1 !== pass2 && userName && userId && pass1) {
+	if(pass1 !== pass2 || !userName || userId || pass1) {
 		registerAlert.textContent = "passwords do not match";
 		return;
 	}
