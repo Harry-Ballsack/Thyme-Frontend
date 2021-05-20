@@ -13,6 +13,13 @@ async function logintest() {
 }
 
 async function login() {
+	try {
+		loginRequest();
+	} catch(error) {
+		loginAlert.textContent = "invalid password or username";
+	}
+
+async function loginRequest() {
 	let userData = await Promise.all([
 		get_user(userFld.value, passwdFld.value),
 		get_stations(userFld.value, passwdFld.value)

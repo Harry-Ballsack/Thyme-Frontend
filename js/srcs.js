@@ -1,7 +1,8 @@
 const usrName = sessionStorage.getItem("name");
 console.log("name" + usrName);
-const stationID = sessionStorage.getItem("stationID");
-console.log("id" + stationID);
+const stationIDs = sessionStorage.getItem("stationID");
+console.log("ids" + stationID);
+var currentStation = stationIDs[0];
 const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass);
 const usrID = sessionStorage.getItem("userID");
@@ -42,14 +43,29 @@ async function displayStationData(s, n, p) {
 	return statData;
 }
 
-displayStationData(stationID, usrID, pass);
-
-
+displayStationData(currentStation, usrID, pass);
 document.getElementById('Title').textContent = (usrName + '\'s Station');
+setUserStations(stationIDs);
 
 
 
+function setUserStations(IDs) {
+	let statListField = document.getElementById("stationDash");
+	let stationList = "";
+	for(let i = 0; i < stationIDs.length; i++) {
+		stationList += "<div id=" + IDs[i] + "w class=\"statListWrapper\">";
+		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
+		stationList += "<a href=\"#\">" + IDs[i] + "</a>";
+		stationList += "</div></div>";
+	}
+	statListField.innerHTML = stationList;
+}
 
+<div id="station1w" class="statListWrapper">
+					<div id="station1e" class="statListElement">
+						<a href="#">station1</a>
+					</div>
+				</div>
 
 
 
