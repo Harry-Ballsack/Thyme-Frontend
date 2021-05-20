@@ -7,6 +7,7 @@ console.log("station" + CURRENTSTATION);
 const PASS = sessionStorage.getItem("passwd");
 console.log("pass" + PASS);
 const USRID = sessionStorage.getItem("userID");
+const NEWSTATBTN = document.getElementById("newStatBtn");
 
 var chart = document.getElementById('dataChart').getContext('2d');
 var myChart = new Chart(chart, {
@@ -47,6 +48,8 @@ setUserStations(STATIONIDS);
 setActiveStation(CURRENTSTATION, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
+NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
+
 
 
 async function displayStationData(id, login, pass) {
@@ -86,11 +89,13 @@ async function displayStationData(id, login, pass) {
 }
 
 async function setActiveStation(id, login, pass) {
-	let displayData = await displayStationData(id, login, pass);
 	for(let i = 0; i < STATIONIDS.length; i++) {
 		document.getElementById(STATIONIDS[i] + "w").style.setProperty("background-color", "grey");
+		document.getElementById(id + "w").style.setProperty("color", "white");
 	}
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
+	document.getElementById(id + "w").style.setProperty("color", "grey");
+	let displayData = await displayStationData(id, login, pass);
 	console.log("now active: " + id);
 }
 
