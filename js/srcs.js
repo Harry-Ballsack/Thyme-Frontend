@@ -1,15 +1,20 @@
-const usrName = sessionStorage.getItem("name");
-console.log("name" + usrName);
-const stationIDs = sessionStorage.getItem("stationIDs").split(",");
-console.log("ids" + stationIDs);
-var currentStation = stationIDs[0];
-console.log("station" + currentStation);
-const pass = sessionStorage.getItem("passwd");
-console.log("pass" + pass);
-const usrID = sessionStorage.getItem("userID");
+const USRNAME = sessionStorage.getItem("name");
+console.log("name" + USRNAME);
+const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
+console.log("ids" + STATIONIDS);
+var CURRENTSTATION = STATIONIDS[0];
+console.log("station" + CURRENTSTATION);
+const PASS = sessionStorage.getItem("passwd");
+console.log("pass" + PASS);
+const USRID = sessionStorage.getItem("userID");
 
-async function displayStationData(s, n, p) {
-	let statData = await get_data(s, n, p);
+setActiveStation(CURRENTSTATION, USRID, PASS);
+//displayStationData(CURRENTSTATION, USRID, PASS);
+document.getElementById('Title').textContent = (USRNAME + '\'s Station');
+setUserStations(STATIONIDS);
+
+async function displayStationData(id, login, pass) {
+	let statData = await get_data(id, login, pass);
 	console.log(statData);
 	let newDataTemp = [statData[statData.length - 10].temperature,
 					statData[statData.length - 20].temperature,
@@ -44,16 +49,15 @@ async function displayStationData(s, n, p) {
 	return statData;
 }
 
-displayStationData(currentStation, usrID, pass);
-document.getElementById('Title').textContent = (usrName + '\'s Station');
-setUserStations(stationIDs);
-
-
+function setActiveStation(id, login, pass) {
+	displayStationData(id, login, pass);
+	document.getElementById(id + "w").style.setProperty("background-color", "white");
+}
 
 function setUserStations(IDs) {
 	let statListField = document.getElementById("stationDash");
 	let stationList = "";
-	for(let i = 0; i < stationIDs.length; i++) {
+	for(let i = 0; i < STATIONIDS.length; i++) {
 		stationList += "<div id=" + IDs[i] + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
 		stationList += "<a href=\"#\">" + IDs[i] + "</a>";
