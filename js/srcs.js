@@ -105,7 +105,7 @@ function setUserStations(IDs) {
 	for(let i = 0; i < STATIONIDS.length; i++) {
 		stationList += "<div id=" + IDs[i] + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
-		stationList += "<p>" + IDs[i] + "</p>";
+		stationList += "<p>Station:<br />" + IDs[i] + "</p>";
 		stationList += "</div></div>";
 	}
 	statListField.innerHTML = stationList;
