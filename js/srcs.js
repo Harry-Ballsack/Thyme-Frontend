@@ -61,14 +61,6 @@ function setUserStations(IDs) {
 	statListField.innerHTML = stationList;
 }
 
-<div id="station1w" class="statListWrapper">
-					<div id="station1e" class="statListElement">
-						<a href="#">station1</a>
-					</div>
-				</div>
-
-
-
 var datalist = [1,3,2,4,2,3,1,2,3,1];
 var chart = document.getElementById('dataChart').getContext('2d');
 var myChart = new Chart(chart, {

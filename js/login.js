@@ -17,6 +17,7 @@ async function login() {
 		loginRequest();
 	} catch(error) {
 		loginAlert.textContent = "invalid password or username";
+		console.log("error loging in");
 	}
 }
 
