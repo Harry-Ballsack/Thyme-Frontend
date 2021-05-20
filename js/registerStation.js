@@ -5,7 +5,7 @@ const statRegAlert = document.getElementById("statRegError");
 const PASS = sessionStorage.getItem("passwd");
 const USRID = sessionStorage.getItem("userID");
 
-registerBtn.addEventListener("click", login);
+loginBtn.addEventListener("click", login);
 
 async function login() {
 	try {
