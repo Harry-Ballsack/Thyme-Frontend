@@ -64,9 +64,12 @@ function setUserStations(IDs) {
 		stationList += "<a href=\"#\">" + IDs[i] + "</a>";
 		stationList += "</div></div>";
 		
-		//document.getElementById(IDs[i] + "w").addEventListener("click", setActiveStation(IDs[i], USRID, PASS));
 	}
 	statListField.innerHTML = stationList;
+	
+	for(let i = 0; 0 < STATIONIDS.length; i++) {
+		document.getElementById(IDs[i] + "w").addEventListener("click", setActiveStation(IDs[i], USRID, PASS));
+	}
 }
 
 var datalist = [1,3,2,4,2,3,1,2,3,1];
