@@ -103,7 +103,7 @@ function setUserStations(IDs) {
 	statListField.innerHTML = stationList;
 	
 	for(let i = 0; i < STATIONIDS.length; i++) {
-		document.getElementById(IDs[i] + "w").addEventListener("click", setActiveStation(IDs[i], USRID, PASS));
+		document.getElementById(IDs[i] + "w").addEventListener("click", function(){setActiveStation(IDs[i], USRID, PASS)});
 	}
 }
 
