@@ -10,19 +10,45 @@
 	</head>
 	<body>
 		<div id="titleBar" class="title">
-			<h1 id="Title" class="title">Thyme</h1>
+			<div id="titleLbl">
+				<h1 id="Title" class="title">Thyme</h1>
+			</div>
+			<div id="stationDash">
+				<div id="statBtnw" class="statListWrapper">
+					<div id="statBtne" class="statListElement">
+						<input id="newStatBtn" type="button" value="Neue Station">
+					</div>
+				</div>
+				<div id="station1w" class="statListWrapper">
+					<div id="station1e" class="statListElement">
+						<a href="#">station1</a>
+					</div>
+				</div>
+				<div id="station2w" class="statListWrapper">
+					<div id="station2e" class="statListElement">
+						<a href="#">station2</a>
+					</div>
+				</div>
+				<div id="station3w" class="statListWrapper">
+					<div id="station3e" class="statListElement">
+						<a href="#">station3</a>
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		<div id="dataView" class="displayView">
 			
 			<div id="emptyMeterWater" class="emptyMeter" style="background-color:#8cc0ff;">
-				<div id="meterFillWater" class="meterFill"></div>
-				<p id="feuchMeterLbl" class="meterLbl">% Feuchtigkeit</p>
+				<div id="meterFillWater" class="meterFill">
+					<p id="feuchMeterLbl" class="meterLbl">% <br />F<br />e<br />u<br />c<br />h<br />t<br />i<br />g<br />k<br />e<br />i<br />t</p>
+				</div>
 			</div>
 			
 			<div id="emptyMeterTemp" class="emptyMeter" style="background-color:#ff7d7d;">
-				<div id="meterFillTemp" class="meterFill"></div>
-				<p id="tempMeterLbl" class="meterLbl">Temperatur:</p>
+				<div id="meterFillTemp" class="meterFill">
+					<p id="tempMeterLbl" class="meterLbl">T<br />e<br />m<br />p<br />e<br />r<br />a<br />t<br />u<br />r:</p>
+				</div>
 			</div>
 			
 			
