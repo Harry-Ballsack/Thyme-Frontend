@@ -7,7 +7,7 @@ loginBtn.addEventListener("click", login);
 
 async function login() {
 	try {
-		loginRequest();
+		await loginRequest();
 	} catch(error) {
 		loginAlert.textContent = "invalid password or username";
 		console.log("error loging in");

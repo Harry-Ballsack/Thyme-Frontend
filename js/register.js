@@ -9,7 +9,7 @@ registerBtn.addEventListener("click", register);
 
 async function register() {
 	try {
-		registerRequest();
+		await registerRequest();
 	} catch(error) {
 		loginAlert.textContent = "there was an issue registering, please try again";
 		console.log("error registering:" + error);
@@ -23,7 +23,7 @@ async function registerRequest() {
 	let pass2 = passwdFld2.value;
 	
 	if(pass1 !== pass2 && userName && userId && pass1) {
-		loginAlert.textContent = "passwords do not match";
+		registerAlert.textContent = "passwords do not match";
 		return;
 	}
 	

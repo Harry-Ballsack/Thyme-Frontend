@@ -9,7 +9,7 @@ loginBtn.addEventListener("click", login);
 
 async function login() {
 	try {
-		registerRequest();
+		await registerRequest();
 	} catch(error) {
 		loginAlert.textContent = "there was an issue registering, please try again";
 		console.log("error registering station:" + error);
