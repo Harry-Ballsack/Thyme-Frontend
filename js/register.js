@@ -22,8 +22,8 @@ async function registerRequest() {
 	let pass1 = passwdFld1.value;
 	let pass2 = passwdFld2.value;
 	
-	if(pass1 !== pass2 || !userName || userId || pass1) {
-		registerAlert.textContent = "passwords do not match";
+	if(pass1 !== pass2 || !userName || !userId || !pass1) {
+		registerAlert.textContent = "please enter name, email and matching passwords";
 		return;
 	}
 	
@@ -31,5 +31,5 @@ async function registerRequest() {
 	sessionStorage.setItem("name", userName);
 	sessionStorage.setItem("userID", userId);
 	sessionStorage.setItem("passwd", pass1);
-	location.href = "registerStation.html";
+	location.href = "index.html";
 }
