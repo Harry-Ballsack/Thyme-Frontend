@@ -1,8 +1,8 @@
 const usrName = sessionStorage.getItem("name");
 console.log("name" + usrName);
-const stationIDs = sessionStorage.getItem("stationIDs");
+const stationIDs = sessionStorage.getItem("stationIDs").split(", ");
 console.log("ids" + stationIDs);
-var currentStation = stationIDs.split(", ");
+var currentStation = stationIDs[0];
 console.log("station" + currentStation);
 const pass = sessionStorage.getItem("passwd");
 console.log("pass" + pass);
