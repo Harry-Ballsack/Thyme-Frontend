@@ -97,6 +97,7 @@ h1
 
 .statListWrapper
 {
+	cursor: pointer;
 	float: right;
 	height: 100%;
 }
@@ -131,6 +132,7 @@ h1
 
 #newStatBtn
 {
+	cursor: pointer;
 	border: none;
 	border-radius: 5px;
 	background-color: #b1ffa8;
