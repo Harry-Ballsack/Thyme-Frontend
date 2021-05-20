@@ -24,6 +24,6 @@ async function registerRequest() {
 		return;
 	}
 	
-	let newStation = await register_station(userName, userId, pass1);
+	let newStation = await register_station(statId, USRID, PASS);
 	location.href = "registerStation.html";
 }
