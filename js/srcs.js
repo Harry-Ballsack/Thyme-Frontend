@@ -63,6 +63,8 @@ function setUserStations(IDs) {
 		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
 		stationList += "<a href=\"#\">" + IDs[i] + "</a>";
 		stationList += "</div></div>";
+		
+		document.getElementById(IDs[i] + "w").addEventListener("click", setActiveStation(IDs[i], USRID, PASS));
 	}
 	statListField.innerHTML = stationList;
 }
