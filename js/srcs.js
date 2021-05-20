@@ -88,6 +88,7 @@ async function displayStationData(id, login, pass) {
 function setActiveStation(id, login, pass) {
 	displayStationData(id, login, pass);
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
+	console.log("now active: " + id);
 }
 
 function setUserStations(IDs) {
@@ -96,7 +97,7 @@ function setUserStations(IDs) {
 	for(let i = 0; i < STATIONIDS.length; i++) {
 		stationList += "<div id=" + IDs[i] + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
-		stationList += "<a href=\"#\">" + IDs[i] + "</a>";
+		stationList += "<p>" + IDs[i] + "</p>";
 		stationList += "</div></div>";
 	}
 	statListField.innerHTML = stationList;
