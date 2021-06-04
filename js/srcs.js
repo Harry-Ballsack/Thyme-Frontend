@@ -103,7 +103,7 @@ async function setActiveStation(id, login, pass) {
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
 	document.getElementById(id + "w").style.setProperty("color", "grey");
 	let displayData = await displayStationData(id, login, pass);
-	currentStation = STATIONIDS.find(f(d){return d.id == id});
+	currentStation = STATIONIDS.find(f(d){return d.id == id;});
 	currentConfig = currentStation.conf;
 	console.log("now active: " + id);
 }
