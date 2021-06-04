@@ -1,13 +1,20 @@
 const USRNAME = sessionStorage.getItem("name");
+const USRID = sessionStorage.getItem("userID");
 console.log("name" + USRNAME);
-const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
-console.log("ids" + STATIONIDS);
-var CURRENTSTATION = STATIONIDS[0];
-console.log("station" + CURRENTSTATION);
 const PASS = sessionStorage.getItem("passwd");
 console.log("pass" + PASS);
-const USRID = sessionStorage.getItem("userID");
+
+const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
+console.log("ids" + STATIONIDS);
+
+var currentStation = STATIONIDS[0];
+console.log("station" + currentStation);
+
+//var currentConfig = await get_station(currentStation, USRID, PASS).conf;
+
 const NEWSTATBTN = document.getElementById("newStatBtn");
+const WATERTIME = document.getElementById("waterTime");
+
 
 var chart = document.getElementById('dataChart').getContext('2d');
 var myChart = new Chart(chart, {
@@ -45,7 +52,7 @@ var myChart = new Chart(chart, {
 });
 
 setUserStations(STATIONIDS);
-setActiveStation(CURRENTSTATION, USRID, PASS);
+setActiveStation(currentStation, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
@@ -96,6 +103,8 @@ async function setActiveStation(id, login, pass) {
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
 	document.getElementById(id + "w").style.setProperty("color", "grey");
 	let displayData = await displayStationData(id, login, pass);
+	currentStation = STATIONIDS.find(id);
+	currentConfig = currentStation.conf;
 	console.log("now active: " + id);
 }
 
@@ -115,12 +124,60 @@ function setUserStations(IDs) {
 	}
 }
 
+function setSidebarSettings() {
+	WATERTIME = currentConfig.watering_duration;
+}
+	
+
+function openSideBar() {
+	document.getElementById("sideBar").style.width = "25%";
+}
+
+function closeSideBar() {
+	document.getElementById("sideBar").style.width = "0";
+}
+
+async function setWetVal() {
+	if(confirm("Den momentanen Sensorwert als Nasswert zu übernehmen?")){
+		currentConfig.moisture_sensor_wet = statData[0].moisture;
+		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+	}
+}
+
+async function setDryVal() {
+	if(confirm("Den momentanen Sensorwert als Trockenwert übernehmen?")){
+		currentConfig.moisture_sensor_dry = statData[0].moisture;
+		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+	}
+}
+
+async function setThreshhold() {
+	if(confirm("Den momentanen Sensorwert als Schwellenwert zum Wässern übernehmen?")){
+		currentConfig.moisture_threshold = statData[0].moisture;
+		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+	}
+}
+
+async function deleteCurrentStation() {
+	if(confirm("Wollen Sie die Station " + currentStation + " wirklich löschen?")){
+		delete_station(currentStation, USRID, PASS);
+		location.reload();
+	}
+}
+
+async function deleteUser() {
+	if(confirm("Wollen Sie ihren Account wirklich löschen?")){
+		delete_user(USRID, PASS);
+		location.reload();
+	}
+}
+
+function addToWaterTime(t) {
+	WATERTIME.innerHTML = WATERTIME + t;
+}
 
 
-
-
-function setMeterLevel( meter, percentage )
-{
+function setMeterLevel( meter, percentage ) {
 	document.getElementById(meter).style.setProperty('height', percentage + '%');
 }
 
