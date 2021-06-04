@@ -10,7 +10,7 @@ console.log("ids" + STATIONIDS);
 var currentStation = STATIONIDS[0];
 console.log("station" + currentStation);
 
-//var currentConfig = await get_station(currentStation, USRID, PASS).conf;
+var currentConfig = await get_station(currentStation, USRID, PASS).conf;
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
@@ -103,10 +103,8 @@ async function setActiveStation(id, login, pass) {
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
 	document.getElementById(id + "w").style.setProperty("color", "grey");
 	let displayData = await displayStationData(id, login, pass);
-	currentStation = STATIONIDS.find(d => {
-		return d.id == id;
-	});
-	currentConfig = currentStation.conf;
+	currentStation = id;
+	currentConfig = await get_station(currentStation, USRID, PASS).conf;
 	console.log("now active: " + id);
 }
 
