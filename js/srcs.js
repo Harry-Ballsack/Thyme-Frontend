@@ -171,6 +171,7 @@ async function deleteCurrentStation() {
 async function deleteUser() {
 	if(confirm("Wollen Sie ihren Account wirklich löschen?")){
 		delete_user(USRID, PASS);
+		sessionStorage.clear();
 		location.reload();
 	}
 }
