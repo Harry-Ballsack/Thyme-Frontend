@@ -11,6 +11,31 @@ h1
 {
 	font-size: 5vh;
 }
+
+h2
+{
+	margin: 0;
+}
+
+a
+{
+	padding: 5%;
+}
+
+button
+{
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+	background-color: #b1ffa8;
+	color: grey;
+}
+
+button:hover
+{
+	background-color: #91ff85;
+	color: grey;
+}
 	
 .title
 {
@@ -110,6 +135,29 @@ h1
 	transform: translateY(-50%);
 }
 
+.titleWrapper
+{
+	top: 50%;
+	float: left;
+	position: relative;
+	transform: translateY(-50%);
+}
+
+.confirmBtn
+{
+	background-color: #ff7d7d;
+}
+
+.confirmBtn:hover
+{
+	background-color: #ff4545;
+}
+
+.incDecBtn
+{
+	width: 2em;
+}
+
 #stationDash
 {
 	height: 100%;
@@ -144,4 +192,24 @@ h1
 	background-color: #91ff85;
 	color: grey;
 }
+
+#sideBar
+{
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	background-color: #4f4f4f;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	transition: 0.1s;
+}
+
+#sideBarBtn
+{
 	
+}
+
+#waterTime
+{
+	width: 1em;
+}
