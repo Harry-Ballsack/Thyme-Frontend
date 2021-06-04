@@ -9,9 +9,33 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
+		<div id="sideBar">
+			<button id="closeSideBarBtn" class="redButton" onclick="closeSideBar()">&times;</button><br />
+			<h2>Stationeinstellungen</h2>
+			<button id="newDryBtn" onclick="setDryVal()">Neuen Trockenwert kalibrieren</button><br />
+			<button id="newWetBtn" onclick="setWetVal()">Neuen Nasswert kalibrieren</button><br />
+			<button id="threshholdBtn" onclick="setThreshhold()">Neuen Schwellenwert setzen</button><br />
+			<button id="deleteStat" class="confirmBtn" onclick="deleteCurrentStation()">Diese Station Löschen</button><br />
+			<div id="durationWrapper">
+				<label for="waterTime">Bewässerungszeit in s: </label>
+				<input type="text" name="waterTime" id="waterTime" value="...">
+				<button id="timeInc" class="incDecBtn" onclick="addToWaterTime(1)">+</button>
+				<button id="timeDec" class="incDecBtn" onclick="addToWaterTime(-1)">-</button>
+			</div>
+			<h2>Accounteinstellungen</h2>
+			<button id="deleteUsr" class="confirmBtn" onclick="deleteUser()">Account löschen</button>
+			<h2>Neue Station</h2>
+			
+		</div>
+		
 		<div id="titleBar" class="title">
 			<div id="titleLbl">
-				<h1 id="Title" class="title">Thyme</h1>
+				<div id="sideBarBtnw" class="titleWrapper">
+					<button id="sideBarBtn" onclick="openSideBar()">&#9776;</button>
+				</div>
+				<div id="Titlew" class="titleWrapper">
+					<h1 id="Title" class="title">Thyme</h1>
+				</div>
 			</div>
 			<div id="statBtnw" class="statListWrapper">
 				<div id="statBtne" class="statListElement">
@@ -36,6 +60,8 @@
 				</div>
 			</div>
 		</div>
+		
+		
 		
 		<div id="dataView" class="displayView">
 			
