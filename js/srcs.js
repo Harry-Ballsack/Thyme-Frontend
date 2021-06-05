@@ -10,11 +10,11 @@ console.log("ids" + STATIONIDS);
 var currentStation = STATIONIDS[0];
 console.log("station" + currentStation);
 
-var currentConfig = (async() => {
-	let res = await get_station(currentStation, USRID, PASS).conf;
-	return res;
-})();
-console.log(currentConfig);
+var currentConfig = async function(x) {
+	let res = await get_station(currentStation, USRID, PASS);
+	console.log(res);
+	return res.conf;
+};
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
