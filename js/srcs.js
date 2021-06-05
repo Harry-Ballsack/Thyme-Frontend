@@ -14,6 +14,7 @@ var currentConfig = async() => {
 	let res = await get_station(currentStation, USRID, PASS).conf;
 	return res;
 }
+console.log(currentConfig);
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
@@ -189,7 +190,13 @@ async function deleteUser() {
 }
 
 function addToWaterTime(t) {
-	WATERTIME.innerHTML = parseFloat(WATERTIME.innerHTML) + t;
+	WATERTIME.innerHTML = parseFloat(WATERTIME.value) + t;
+}
+
+async function setWaterTime(){
+	currentConfig.water_time = parseInt(WATERTIME.value);
+	let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+	console.log(newconf);
 }
 
 
