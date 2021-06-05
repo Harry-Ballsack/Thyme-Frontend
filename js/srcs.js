@@ -190,7 +190,7 @@ async function deleteUser() {
 }
 
 function addToWaterTime(t) {
-	WATERTIME.innerHTML = parseFloat(WATERTIME.value) + t;
+	WATERTIME.value = parseFloat(WATERTIME.value) + t;
 }
 
 async function setWaterTime(){
