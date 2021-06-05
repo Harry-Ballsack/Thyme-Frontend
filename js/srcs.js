@@ -189,7 +189,7 @@ function addToWaterTime(t) {
 
 async function setWaterTime(){
 	let currentConfig = await get_station(currentStation, USRID, PASS);
-	console.log("currentConfig " + currentConfig);
+	console.log(currentConfig);
 	
 	/*currentConfig.water_time = parseInt(WATERTIME.value);
 	let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
