@@ -17,6 +17,9 @@ var currentConfig = async() => {
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
+const MOISTLBL = document.getElementById("feuchtVar");
+const TEMPLBL = document.getElementById("tempVar");
+const TANKLBL = document.getElementById("wasserstandVar");
 
 
 var chart = document.getElementById('dataChart').getContext('2d');
@@ -63,8 +66,14 @@ NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStatio
 
 
 async function displayStationData(id, login, pass) {
+	
 	let statData = await get_data(id, login, pass, 120);
 	console.log(statData);
+	
+	MOISTLBL.innerHTML = statData[0].moisture;
+	TEMPLBL.innerHTML = statData[0].temperature;
+	TANKLBL.innerHTML = statData[0].tank_fill;
+	
 	let newDataTemp = [statData[statData.length - 10].temperature,
 					statData[statData.length - 20].temperature,
 					statData[statData.length - 30].temperature,
@@ -172,7 +181,7 @@ async function deleteUser() {
 	if(confirm("Wollen Sie ihren Account wirklich löschen?")){
 		delete_user(USRID, PASS);
 		sessionStorage.clear();
-		location.reload();
+		//location.reload();
 	}
 }
 
