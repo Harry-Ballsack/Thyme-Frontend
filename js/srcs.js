@@ -63,7 +63,7 @@ NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStatio
 
 
 async function displayStationData(id, login, pass) {
-	let statData = await get_data(id, login, pass);
+	let statData = await get_data(id, login, pass, 120);
 	console.log(statData);
 	let newDataTemp = [statData[statData.length - 10].temperature,
 					statData[statData.length - 20].temperature,

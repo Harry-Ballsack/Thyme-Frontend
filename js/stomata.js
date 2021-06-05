@@ -79,6 +79,16 @@ async function get_data(id, login, pass) {
     return data.data;
 }
 
+async function get_data(id, login, pass, count) {
+	const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations/" + id + "/data?count=" + count, {
+        headers: {
+            "Authorization": "Basic " + btoa(login + ":" + pass)
+        }
+    });
+    const data = await resp.json();
+    return data.data;
+}
+
 async function get_state(id, login, pass) {
     const resp = await fetch("https://stomata.undertheprinter.com/v1/users/" + login + "/stations/" + id + "/state", {
         headers: {
