@@ -153,6 +153,7 @@ async function setWetVal() {
 	if(confirm("Den momentanen Sensorwert als Nasswert zu übernehmen?")){
 		currentConfig.moisture_sensor_wet = statData[0].moisture;
 		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+		return newconf;
 	}
 }
 
@@ -160,6 +161,7 @@ async function setDryVal() {
 	if(confirm("Den momentanen Sensorwert als Trockenwert übernehmen?")){
 		currentConfig.moisture_sensor_dry = statData[0].moisture;
 		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+		return newconf;
 	}
 }
 
@@ -167,12 +169,13 @@ async function setThreshhold() {
 	if(confirm("Den momentanen Sensorwert als Schwellenwert zum Wässern übernehmen?")){
 		currentConfig.moisture_threshold = statData[0].moisture;
 		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+		return newconf;
 	}
 }
 
 async function deleteCurrentStation() {
 	if(confirm("Wollen Sie die Station " + currentStation + " wirklich löschen?")){
-		delete_station(currentStation, USRID, PASS);
+		await delete_station(currentStation, USRID, PASS);
 		location.reload();
 	}
 }
@@ -186,7 +189,7 @@ async function deleteUser() {
 }
 
 function addToWaterTime(t) {
-	WATERTIME.innerHTML = WATERTIME + t;
+	WATERTIME.innerHTML = parseFloat(WATERTIME.innerHTML) + t;
 }
 
 
