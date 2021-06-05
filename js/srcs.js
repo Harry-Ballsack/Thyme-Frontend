@@ -10,12 +10,6 @@ console.log("ids" + STATIONIDS);
 var currentStation = STATIONIDS[0];
 console.log("station" + currentStation);
 
-var currentConfig = async function(x) {
-	let res = await get_station(currentStation, USRID, PASS);
-	console.log(res);
-	return res.conf;
-};
-
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
 const MOISTLBL = document.getElementById("feuchtVar");
@@ -194,11 +188,13 @@ function addToWaterTime(t) {
 }
 
 async function setWaterTime(){
-	currentConfig.water_time = parseInt(WATERTIME.value);
+	let currentConfig = await get_station(currentStation, USRID, PASS).conf;
+	console.log(currentConfig);
+	
+	/*currentConfig.water_time = parseInt(WATERTIME.value);
 	let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
-	console.log(newconf);
+	console.log(newconf);*/
 }
-
 
 function setMeterLevel( meter, percentage ) {
 	document.getElementById(meter).style.setProperty('height', percentage + '%');
