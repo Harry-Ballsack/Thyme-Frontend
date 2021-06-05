@@ -10,10 +10,10 @@ console.log("ids" + STATIONIDS);
 var currentStation = STATIONIDS[0];
 console.log("station" + currentStation);
 
-var currentConfig = async() => {
+var currentConfig = (async() => {
 	let res = await get_station(currentStation, USRID, PASS).conf;
 	return res;
-}
+})();
 console.log(currentConfig);
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
