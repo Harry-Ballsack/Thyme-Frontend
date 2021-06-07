@@ -7,10 +7,7 @@ console.log("pass" + PASS);
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
 
-var currentStation = (async() => {
-	const d = await get_station(STATIONIDS[0], USRID, PASS);
-	return d;
-});
+var currentStation = await get_station(STATIONIDS[0], USRID, PASS);
 
 console.log(currentStation);
 
