@@ -7,9 +7,10 @@ console.log("pass" + PASS);
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
 
-var currentStation = await get_station(STATIONIDS[0], USRID, PASS);
+const STATIONS = getStations;
 
-console.log(currentStation);
+var currentStation = STATIONIDS[0];
+console.log("station" + currentStation);
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
@@ -59,7 +60,15 @@ setActiveStation(currentStation, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
 
-
+async function getStations(IDs, login, pass) {
+	let stations = [];
+	for(let i = 0; i < IDs.length; i++) {
+		let newStation = await get_station(IDs[i], login, pass);
+		stations.push(newStation);
+	}
+	console.log(stations);
+	return stations;
+}
 
 async function displayStationData(id, login, pass) {
 	
