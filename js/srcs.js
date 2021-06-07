@@ -13,7 +13,9 @@ const STATIONS = (function() {
 	let jsonArray = JSON.parse(sessionStorage.getItem("stations"));
 	let stationObjects = [];
 	for(let i = 0; i<jsonArray.length; i++) {
-		stationObjects.push(JSON.parse(jsonArray[i]));
+		let parsedStation = JSON.parse(jsonArray[i]);
+		parsedStation.conf = JSON.parse(parsedStation.conf);
+		stationObjects.push(parsedStation);
 	}
 	return stationObjects;
 })();
@@ -129,12 +131,12 @@ async function setActiveStation(id, login, pass) {
 	console.log("now active: " + id);
 }
 
-function setUserStations(IDs) {
+function setUserStations(stations) {
 	let statListField = document.getElementById("stationDash");
 	let stationList = "";
-	for(let i = 0; i < STATIONIDS.length; i++) {
-		stationList += "<div id=" + IDs[i] + "w class=\"statListWrapper\">";
-		stationList += "<div id=" + IDs[i] + "e class=\"statListElement\">";
+	for(let i = 0; i < stations.length; i++) {
+		stationList += "<div id=" + stations[i].name + "w class=\"statListWrapper\">";
+		stationList += "<div id=" + stations[i].name + "e class=\"statListElement\">";
 		stationList += "<p>Station:<br />" + IDs[i] + "</p>";
 		stationList += "</div></div>";
 	}
