@@ -137,7 +137,7 @@ function setUserStations(stations) {
 	for(let i = 0; i < stations.length; i++) {
 		stationList += "<div id=" + stations[i].name + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + stations[i].name + "e class=\"statListElement\">";
-		stationList += "<p>Station:<br />" + IDs[i] + "</p>";
+		stationList += "<p>Station:<br />" + stations[i].name + "</p>";
 		stationList += "</div></div>";
 	}
 	statListField.innerHTML = stationList;
