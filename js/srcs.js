@@ -9,7 +9,15 @@ if(!USRNAME || !USRID || !PASS) {
 	location.href = "login.html";
 }
 
-const STATIONS = JSON.parse(sessionStorage.getItem("stations"));
+const STATIONS = (function() {
+	let jsonArray = JSON.parse(sessionStorage.getItem("stations"));
+	let stationObjects = [];
+	for(let i = 0; i<jsonArray.length; i++) {
+		stationObjects.push(JSON.parse(jsonArray[i]));
+	}
+	return stationObjects;
+})();
+	
 console.log(STATIONS);
 
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
