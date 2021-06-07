@@ -9,9 +9,6 @@ if(!USRNAME || !USRID || !PASS) {
 	location.href = "login.html";
 }
 
-console.log(error);
-location.href = "login.html";
-
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
 
