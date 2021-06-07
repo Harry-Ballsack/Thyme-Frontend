@@ -7,8 +7,12 @@ console.log("pass" + PASS);
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
 
-var currentStation = STATIONIDS[0];
-console.log("station" + currentStation);
+var currentStation = (async() => {
+	const d = await get_station(STATIONIDS[0], USRID, PASS);
+	return d;
+});
+
+console.log(currentStation);
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
@@ -192,7 +196,7 @@ async function setWaterTime(){
 	console.log(currentStationData);
 	let currentConfig = JSON.parse(currentStationData.conf);
 	console.log(currentConfig);
-	console.log(currentStationData.water_time);
+	console.log(currentStationData.watering_duration);
 	
 	
 	/*currentConfig.water_time = parseInt(WATERTIME.value);
