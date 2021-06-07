@@ -28,7 +28,7 @@ async function loginRequest() {
 	
 	sessionStorage.setItem("name", userName);
 	sessionStorage.setItem("userID", userFld.value);
-	sessionStorage.setItem("stationIDs", stationsIDs);
+	sessionStorage.setItem("stationIDs", stationIDs);
 	sessionStorage.setItem("stations", JSON.stringify(stations));
 	sessionStorage.setItem("passwd", passwdFld.value);
 	if(userName && stations) {
