@@ -1,13 +1,16 @@
-try{
-	const USRNAME = sessionStorage.getItem("name");
-	const USRID = sessionStorage.getItem("userID");
-	console.log("name" + USRNAME);
-	const PASS = sessionStorage.getItem("passwd");
-	console.log("pass" + PASS);
-} catch (error) {
-	console.log(error);
+
+const USRNAME = sessionStorage.getItem("name");
+const USRID = sessionStorage.getItem("userID");
+console.log("name" + USRNAME);
+const PASS = sessionStorage.getItem("passwd");
+console.log("pass" + PASS);
+
+if(!USRNAME || !USRID || !PASS) {
 	location.href = "login.html";
 }
+
+console.log(error);
+location.href = "login.html";
 
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
