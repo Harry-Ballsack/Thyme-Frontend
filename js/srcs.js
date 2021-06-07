@@ -70,7 +70,7 @@ var myChart = new Chart(chart, {
 	}
 });
 
-setUserStations(STATIONIDS);
+setUserStations(STATIONS);
 setActiveStation(currentStation, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
@@ -119,7 +119,7 @@ async function displayStationData(id, login, pass) {
 }
 
 async function setActiveStation(id, login, pass) {
-	for(let i = 0; i < STATIONIDS.length; i++) {
+	for(let i = 0; i < STATIONS.length; i++) {
 		document.getElementById(STATIONS[i].name + "w").style.setProperty("background-color", "grey");
 		document.getElementById(STATIONS[i].name + "w").style.setProperty("color", "white");
 	}
