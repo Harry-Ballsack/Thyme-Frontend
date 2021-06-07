@@ -10,7 +10,7 @@ async function login() {
 		await loginRequest();
 	} catch(error) {
 		loginAlert.textContent = "invalid password or username";
-		console.log("error loging in");
+		console.log("error loging in: " + error);
 	}
 }
 
@@ -29,7 +29,7 @@ async function loginRequest() {
 	sessionStorage.setItem("name", userName);
 	sessionStorage.setItem("userID", userFld.value);
 	sessionStorage.setItem("stationIDs", stationsIDs);
-	sessionStorage.setItem("stations", stations);
+	sessionStorage.setItem("stations", JSON.stringify(stations));
 	sessionStorage.setItem("passwd", passwdFld.value);
 	if(userName && stations) {
 		location.href = "index.html";
