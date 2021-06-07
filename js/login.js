@@ -21,15 +21,27 @@ async function loginRequest() {
 	]);
 	
 	let userName = userData[0].name;
-	let stations = userData[1];
+	let stationIDs = userData[1];
+	let stations = await getStations(stationIDs, userFld.value, passwdFld.value);
 	console.log(userName);
 	console.log(stations.join(", "));
 	
 	sessionStorage.setItem("name", userName);
 	sessionStorage.setItem("userID", userFld.value);
-	sessionStorage.setItem("stationIDs", stations);
+	sessionStorage.setItem("stationIDs", stationsIDs);
+	sessionStorage.setItem("stations", stations);
 	sessionStorage.setItem("passwd", passwdFld.value);
 	if(userName && stations) {
 		location.href = "index.html";
 	}
+}
+
+async function getStations(IDs, login, pass) {
+	let stations = [];
+	for(let i = 0; i < IDs.length; i++) {
+		let newStation = await get_station(IDs[i], login, pass);
+		stations.push(newStation);
+	}
+	console.log(stations);
+	return stations;
 }

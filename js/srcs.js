@@ -1,13 +1,16 @@
-const USRNAME = sessionStorage.getItem("name");
-const USRID = sessionStorage.getItem("userID");
-console.log("name" + USRNAME);
-const PASS = sessionStorage.getItem("passwd");
-console.log("pass" + PASS);
+try{
+	const USRNAME = sessionStorage.getItem("name");
+	const USRID = sessionStorage.getItem("userID");
+	console.log("name" + USRNAME);
+	const PASS = sessionStorage.getItem("passwd");
+	console.log("pass" + PASS);
+} catch (error) {
+	console.log(error);
+	location.href = "login.html";
+}
 
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
-
-const STATIONS = getStations;
 
 var currentStation = STATIONIDS[0];
 console.log("station" + currentStation);
@@ -59,16 +62,6 @@ setActiveStation(currentStation, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
-
-async function getStations(IDs, login, pass) {
-	let stations = [];
-	for(let i = 0; i < IDs.length; i++) {
-		let newStation = await get_station(IDs[i], login, pass);
-		stations.push(newStation);
-	}
-	console.log(stations);
-	return stations;
-}
 
 async function displayStationData(id, login, pass) {
 	
@@ -191,6 +184,11 @@ async function deleteUser() {
 		sessionStorage.clear();
 		location.reload();
 	}
+}
+
+function logout() {
+	sessionStorage.clear();
+	location.reload();
 }
 
 function addToWaterTime(t) {
