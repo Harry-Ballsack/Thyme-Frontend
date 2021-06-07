@@ -120,8 +120,8 @@ async function displayStationData(id, login, pass) {
 
 async function setActiveStation(id, login, pass) {
 	for(let i = 0; i < STATIONIDS.length; i++) {
-		document.getElementById(STATIONIDS[i] + "w").style.setProperty("background-color", "grey");
-		document.getElementById(STATIONIDS[i] + "w").style.setProperty("color", "white");
+		document.getElementById(STATIONS[i].name + "w").style.setProperty("background-color", "grey");
+		document.getElementById(STATIONS[i].name + "w").style.setProperty("color", "white");
 	}
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
 	document.getElementById(id + "w").style.setProperty("color", "grey");
