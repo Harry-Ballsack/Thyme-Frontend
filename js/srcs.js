@@ -76,10 +76,8 @@ var myChart = new Chart(chart, {
 					drawOnChartArea: false,
 				},
 				ticks: {
-					beginAtZero: true,
-					steps: 10,
-					stepSize: 10,
-					max: 100,
+					suggestedMin: 0,
+					suggestedMax: 100,
 				},
 			},
 		}
