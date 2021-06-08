@@ -94,29 +94,16 @@ async function displayStationData(id, login, pass) {
 	TEMPLBL.innerHTML = statData[0].temperature;
 	TANKLBL.innerHTML = statData[0].tank_fill;
 	
-	let newDataTemp = [statData[statData.length - 10].temperature,
-					statData[statData.length - 20].temperature,
-					statData[statData.length - 30].temperature,
-					statData[statData.length - 40].temperature,
-					statData[statData.length - 50].temperature,
-					statData[statData.length - 60].temperature,
-					statData[statData.length - 70].temperature,
-					statData[statData.length - 80].temperature,
-					statData[statData.length - 90].temperature,
-					statData[statData.length - 100].temperature];
+	let newDataTemp = [];
+	let newDataMoist = [];
+	for(let i = 0; i<10; i++) {
+		newDataTemp.push(statData[statData.length - 60*i].temperature);
+		newDataTemp.push(statData[statData.length - 60*i].moisture);
+	}
+
 	console.log(newDataTemp);
 	myChart.data.datasets[0].data = newDataTemp;
 	
-	let newDataMoist = [statData[statData.length - 10].moisture,
-					statData[statData.length - 20].moisture,
-					statData[statData.length - 30].moisture,
-					statData[statData.length - 40].moisture,
-					statData[statData.length - 50].moisture,
-					statData[statData.length - 60].moisture,
-					statData[statData.length - 70].moisture,
-					statData[statData.length - 80].moisture,
-					statData[statData.length - 90].moisture,
-					statData[statData.length - 100].moisture];
 	console.log(newDataMoist);
 	myChart.data.datasets[1].data = newDataMoist;
 	myChart.update();
