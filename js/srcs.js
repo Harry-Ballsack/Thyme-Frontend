@@ -22,11 +22,11 @@ const STATIONS = (function() {
 	
 console.log(STATIONS);
 
+var currentStation = STATIONS[0];
+console.log("station" + currentStation);
+
 const STATIONIDS = sessionStorage.getItem("stationIDs").split(",");
 console.log("ids" + STATIONIDS);
-
-var currentStation = STATIONIDS[0];
-console.log("station" + currentStation);
 
 const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
@@ -121,16 +121,16 @@ async function displayStationData(id, login, pass) {
 	return statData;
 }
 
-async function setActiveStation(id, login, pass) {
+async function setActiveStation(station, login, pass) {
 	for(let i = 0; i < STATIONS.length; i++) {
 		document.getElementById(STATIONS[i].id + "w").style.setProperty("background-color", "grey");
 		document.getElementById(STATIONS[i].id + "w").style.setProperty("color", "white");
 	}
-	document.getElementById(id + "w").style.setProperty("background-color", "white");
-	document.getElementById(id + "w").style.setProperty("color", "grey");
-	let displayData = await displayStationData(id, login, pass);
-	currentStation = id;
-	currentConfig = await get_station(currentStation, USRID, PASS).conf;
+	document.getElementById(station.id + "w").style.setProperty("background-color", "white");
+	document.getElementById(station.id + "w").style.setProperty("color", "grey");
+	let displayData = await displayStationData(station.id, login, pass);
+	currentStation = station;
+	currentConfig = await get_station(currentStation.id, USRID, PASS).conf;
 	console.log("now active: " + id);
 }
 
@@ -166,7 +166,7 @@ function closeSideBar() {
 async function setWetVal() {
 	if(confirm("Den momentanen Sensorwert als Nasswert zu übernehmen?")){
 		currentConfig.moisture_sensor_wet = statData[0].moisture;
-		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+		let newconf = await update_conf(currentConfig, currentStation.id, USRID, PASS);
 		return newconf;
 	}
 }
@@ -174,7 +174,7 @@ async function setWetVal() {
 async function setDryVal() {
 	if(confirm("Den momentanen Sensorwert als Trockenwert übernehmen?")){
 		currentConfig.moisture_sensor_dry = statData[0].moisture;
-		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+		let newconf = await update_conf(currentConfig, currentStation.id, USRID, PASS);
 		return newconf;
 	}
 }
@@ -182,14 +182,14 @@ async function setDryVal() {
 async function setThreshhold() {
 	if(confirm("Den momentanen Sensorwert als Schwellenwert zum Wässern übernehmen?")){
 		currentConfig.moisture_threshold = statData[0].moisture;
-		let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
+		let newconf = await update_conf(currentConfig, currentStation.id, USRID, PASS);
 		return newconf;
 	}
 }
 
 async function deleteCurrentStation() {
 	if(confirm("Wollen Sie die Station " + currentStation + " wirklich löschen?")){
-		await delete_station(currentStation, USRID, PASS);
+		await delete_station(currentStation.id, USRID, PASS);
 		location.reload();
 	}
 }
@@ -212,7 +212,7 @@ function addToWaterTime(t) {
 }
 
 async function setWaterTime(){
-	let currentStationData = await get_station(currentStation, USRID, PASS);
+	let currentStationData = await get_station(currentStation.id, USRID, PASS);
 	console.log(currentStationData);
 	let currentConfig = JSON.parse(currentStationData.conf);
 	console.log(currentConfig);
