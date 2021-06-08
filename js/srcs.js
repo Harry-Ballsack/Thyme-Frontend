@@ -59,14 +59,14 @@ var myChart = new Chart(chart, {
 		responsive: true,
 		maintainAspectRatio: false,
 		interaction: {
-			mode: 'nearest',
-			intersect: false
+			mode: 'index',
+			intersect: false,
 		},
 		scales:
 		{
 			tempScale: {
 				type: 'linear',
-				grace: '80%',
+				grace: '10%',
 				position: 'left',
 			},
 			moistScale: {
