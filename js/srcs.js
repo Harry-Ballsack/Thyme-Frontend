@@ -44,13 +44,15 @@ var myChart = new Chart(chart, {
 			label: 'Temperatur',
 			data: [0,0,0,0,0,0,0,0,0,0],
 			pointRadius: 0,
-			borderColor: '#ff7d7d'
+			borderColor: '#ff7d7d',
+			yAxisID: 'tempScale',
 		},
 		{
 			label: 'Feuchtigkeit',
 			data: [0,0,0,0,0,0,0,0,0,0],
 			pointRadius: 0,
-			borderColor: '#8cc0ff'
+			borderColor: '#8cc0ff',
+			yAxisID: 'moistScale',
 		}]
 	},
 	options: {
@@ -62,12 +64,12 @@ var myChart = new Chart(chart, {
 		},
 		scales:
 		{
-			y: {
+			tempScale: {
 				type: 'linear',
 				grace: '80%',
 				position: 'left',
 			},
-			y1: {
+			moistScale: {
 				type: 'linear',
 				position: 'right',
 				
@@ -98,7 +100,7 @@ async function displayStationData(id, login, pass) {
 	let newDataMoist = [];
 	for(let i = 0; i<10; i++) {
 		newDataTemp.push(statData[statData.length - 60*i].temperature);
-		newDataTemp.push(statData[statData.length - 60*i].moisture);
+		newDataTemp.push((statData[statData.length - 60*i].moisture) / 10);
 	}
 
 	console.log(newDataTemp);
