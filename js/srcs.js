@@ -186,7 +186,7 @@ async function setThreshhold() {
 }
 
 async function deleteCurrentStation() {
-	if(confirm("Wollen Sie die Station " + currentStation + " wirklich löschen?")){
+	if(confirm("Wollen Sie die Station " + currentStation.name + " wirklich löschen?")){
 		await delete_station(currentStation.id, USRID, PASS);
 		location.reload();
 	}
