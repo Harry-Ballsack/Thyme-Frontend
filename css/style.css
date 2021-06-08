@@ -85,6 +85,7 @@ button:hover
 	width: 100%;
 	background-color: #CFD8DC;
 	margin: 0px 0px 0px 0px;
+	transition: 0.1s;
 	/*border-radius: 999px 999px 0px 0px;*/
 }
 
