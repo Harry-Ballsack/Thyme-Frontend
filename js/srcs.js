@@ -112,6 +112,7 @@ async function displayStationData(id, login, pass) {
 		timeStep = statData.length - 6*(i+1);
 		newDataTemp.push(statData[timeStep].temperature);
 		newDataMoist.push((statData[timeStep].moisture) / 10);
+		console.log(statData[timeStep].time);
 		let timeDate = new Date(statData[timeStep].time);
 		let timeString = timeDate.getHours() + ":" + timeDate.getMinutes();
 		xAxisTimes.push(timeString);
