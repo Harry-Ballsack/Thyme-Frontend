@@ -106,16 +106,25 @@ async function displayStationData(id, login, pass) {
 	
 	let newDataTemp = [];
 	let newDataMoist = [];
+	let xAxisTimes = [];
+	
 	for(let i = 0; i<10; i++) {
-		newDataTemp.push(statData[statData.length - 6*(i+1)].temperature);
-		newDataMoist.push((statData[statData.length - 6*(i+1)].moisture) / 10);
+		timeStep = statData.length - 6*(i+1);
+		newDataTemp.push(statData[timeStep].temperature);
+		newDataMoist.push((statData[timeStep].moisture) / 10);
+		let timeDate = new Date(statData[timeStep].time);
+		let timeString = timeDate.getHours() + ":" + getMinutes();
+		xAxisTimes.push(timeString);
 	}
 
 	console.log(newDataTemp);
 	myChart.data.datasets[0].data = newDataTemp;
 	
 	console.log(newDataMoist);
-	myChart.data.datasets[1].data = newDataMoist;
+	myChart.data.datasets[1].data = newDataMoist;	
+	
+	console.log(xAxisTimes);
+	myChart.data.labels = xAxisTimes;
 	myChart.update();
 	
 	setMeterLevel('meterFillWater', Math.max(Math.min((statData[statData.length - 1].moisture)/10, 100), 0));
