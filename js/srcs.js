@@ -72,6 +72,7 @@ var myChart = new Chart(chart, {
 				grace: '10%',
 				position: 'left',
 				title: {
+					display: true,
 					text: 'Temperatur/°C',
 				},
 			},
@@ -79,15 +80,14 @@ var myChart = new Chart(chart, {
 				type: 'linear',
 				position: 'right',
 				title: {
+					display: true,
 					text: 'Feuchtigkeit/%',
 				},
 				grid: {
 					drawOnChartArea: false,
 				},
-				ticks: {
-					suggestedMin: 0,
-					suggestedMax: 100,
-				},
+				min: 0,
+				max: 100,
 			},
 		}
 	}
