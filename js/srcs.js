@@ -69,7 +69,7 @@ var myChart = new Chart(chart, {
 			},
 			tempScale: {
 				type: 'linear',
-				grace: '10%',
+				//grace: '10%',
 				position: 'left',
 				title: {
 					display: true,
@@ -243,6 +243,6 @@ async function setWaterTime(){
 }
 
 function setMeterLevel( meter, percentage ) {
-	document.getElementById(meter).style.setProperty('height', percentage + '%');
+	document.getElementById(meter).style.setProperty('height', (100-percentage) + '%');
 }
 
