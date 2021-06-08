@@ -72,9 +72,14 @@ var myChart = new Chart(chart, {
 			moistScale: {
 				type: 'linear',
 				position: 'right',
-				
 				grid: {
 					drawOnChartArea: false,
+				},
+				ticks: {
+					beginAtZero: true,
+					steps: 10,
+					stepSize: 10,
+					max: 100,
 				},
 			},
 		}
