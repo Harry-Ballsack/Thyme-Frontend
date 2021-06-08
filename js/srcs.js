@@ -89,7 +89,7 @@ NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStatio
 
 async function displayStationData(id, login, pass) {
 	
-	let statData = await get_data(id, login, pass, 120);
+	let statData = await get_data(id, login, pass, 70);
 	console.log(statData);
 	
 	MOISTLBL.innerHTML = statData[0].moisture;
@@ -99,8 +99,8 @@ async function displayStationData(id, login, pass) {
 	let newDataTemp = [];
 	let newDataMoist = [];
 	for(let i = 0; i<10; i++) {
-		newDataTemp.push(statData[statData.length - 60*i].temperature);
-		newDataTemp.push((statData[statData.length - 60*i].moisture) / 10);
+		newDataTemp.push(statData[statData.length - 6*i].temperature);
+		newDataTemp.push((statData[statData.length - 6*i].moisture) / 10);
 	}
 
 	console.log(newDataTemp);
