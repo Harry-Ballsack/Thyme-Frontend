@@ -117,7 +117,7 @@ async function displayStationData(id, login, pass) {
 		newDataTemp.push(statData[timeStep].temperature);
 		newDataMoist.push((statData[timeStep].moisture) / 10);
 		console.log(statData[timeStep].time);
-		let timeDate = new Date(statData[timeStep].time);
+		let timeDate = new Date(statData[timeStep].time * 1000);
 		let timeString = timeDate.getHours() + ":" + timeDate.getMinutes();
 		xAxisTimes.push(timeString);
 	}
