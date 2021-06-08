@@ -129,7 +129,7 @@ async function setActiveStation(station, login, pass) {
 	let displayData = await displayStationData(station.id, login, pass);
 	currentStation = station;
 	currentConfig = await get_station(currentStation.id, USRID, PASS).conf;
-	console.log("now active: " + id);
+	console.log("now active: " + station.id);
 }
 
 function setUserStations(stations) {
