@@ -71,12 +71,16 @@ var myChart = new Chart(chart, {
 				type: 'linear',
 				grace: '10%',
 				position: 'left',
-				text: 'Temperatur/°C',
+				title: {
+					text: 'Temperatur/°C',
+				},
 			},
 			moistScale: {
 				type: 'linear',
 				position: 'right',
-				text: 'Feuchtigkeit/%',
+				title: {
+					text: 'Feuchtigkeit/%',
+				},
 				grid: {
 					drawOnChartArea: false,
 				},
