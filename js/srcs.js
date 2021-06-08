@@ -124,6 +124,7 @@ async function setActiveStation(station, login, pass) {
 		document.getElementById(STATIONS[i].id + "w").style.setProperty("background-color", "grey");
 		document.getElementById(STATIONS[i].id + "w").style.setProperty("color", "white");
 	}
+	console.log(station.id);
 	document.getElementById(station.id + "w").style.setProperty("background-color", "white");
 	document.getElementById(station.id + "w").style.setProperty("color", "grey");
 	let displayData = await displayStationData(station.id, login, pass);
