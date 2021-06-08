@@ -40,6 +40,7 @@ async function getStations(IDs, login, pass) {
 	let stations = [];
 	for(let i = 0; i < IDs.length; i++) {
 		let newStation = await get_station(IDs[i], login, pass);
+		newStation.id = IDs[i];
 		stations.push(JSON.stringify(newStation));
 	}
 	console.log(stations);
