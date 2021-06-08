@@ -64,14 +64,19 @@ var myChart = new Chart(chart, {
 		},
 		scales:
 		{
+			x: {
+				text: 'Uhrzeit',
+			},
 			tempScale: {
 				type: 'linear',
 				grace: '10%',
 				position: 'left',
+				text: 'Temperatur/°C',
 			},
 			moistScale: {
 				type: 'linear',
 				position: 'right',
+				text: 'Feuchtigkeit/%',
 				grid: {
 					drawOnChartArea: false,
 				},
