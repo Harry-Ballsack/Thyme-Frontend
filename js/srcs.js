@@ -120,8 +120,8 @@ async function displayStationData(id, login, pass) {
 
 async function setActiveStation(id, login, pass) {
 	for(let i = 0; i < STATIONS.length; i++) {
-		document.getElementById(STATIONS[i].name + "w").style.setProperty("background-color", "grey");
-		document.getElementById(STATIONS[i].name + "w").style.setProperty("color", "white");
+		document.getElementById(STATIONS[i].id + "w").style.setProperty("background-color", "grey");
+		document.getElementById(STATIONS[i].id + "w").style.setProperty("color", "white");
 	}
 	document.getElementById(id + "w").style.setProperty("background-color", "white");
 	document.getElementById(id + "w").style.setProperty("color", "grey");
@@ -135,8 +135,8 @@ function setUserStations(stations) {
 	let statListField = document.getElementById("stationDash");
 	let stationList = "";
 	for(let i = 0; i < stations.length; i++) {
-		stationList += "<div id=" + stations[i].name + "w class=\"statListWrapper\">";
-		stationList += "<div id=" + stations[i].name + "e class=\"statListElement\">";
+		stationList += "<div id=" + stations[i].id + "w class=\"statListWrapper\">";
+		stationList += "<div id=" + stations[i].id + "e class=\"statListElement\">";
 		stationList += "<p>Station:<br />" + stations[i].name + "</p>";
 		stationList += "</div></div>";
 	}
