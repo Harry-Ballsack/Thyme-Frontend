@@ -64,8 +64,17 @@ var myChart = new Chart(chart, {
 		{
 			y: {
 				type: 'linear',
-				grace: '80%'
-			}
+				grace: '80%',
+				position: 'left',
+			},
+			y1: {
+				type: 'linear',
+				position: 'right',
+				
+				grid: {
+					drawOnChartArea: false,
+				},
+			},
 		}
 	}
 });
