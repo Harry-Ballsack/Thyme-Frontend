@@ -99,9 +99,8 @@ async function displayStationData(id, login, pass) {
 	let newDataTemp = [];
 	let newDataMoist = [];
 	for(let i = 0; i<10; i++) {
-		console.log(i);
-		newDataTemp.push(statData[statData.length - 6*i].temperature);
-		newDataTemp.push((statData[statData.length - 6*i].moisture) / 10);
+		newDataTemp.push(statData[statData.length - 6*(i+1)].temperature);
+		newDataTemp.push((statData[statData.length - 6*(i+1)].moisture) / 10);
 	}
 
 	console.log(newDataTemp);
