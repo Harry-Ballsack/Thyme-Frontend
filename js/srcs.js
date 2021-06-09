@@ -103,7 +103,7 @@ async function displayStationData(station, login, pass) {
 	let statData = [];
 	
 	if(station.data == null) {
-		statData = await get_data(station.id, login, pass, 70);
+		statData = await get_data(station.id, login, pass);
 		station.data = statData;
 		console.log(statData);
 	} else {
