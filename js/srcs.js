@@ -103,7 +103,7 @@ async function displayStationData(station, login, pass) {
 	let statData = [];
 	
 	if(station.data == null) {
-		statData = await get_data(station.id, login, pass);
+		statData = await get_data(station.id, login, pass, 70);
 		station.data = statData;
 		console.log(statData);
 	} else {
@@ -120,7 +120,7 @@ async function displayStationData(station, login, pass) {
 	let xAxisTimes = [];
 	
 	for(let i = 0; i<10; i++) {
-		timeStep = statData.length - 6*(i+1);
+		timeStep = 6*(i+1);
 		newDataTemp.push(statData[timeStep].temperature);
 		newDataMoist.push((statData[timeStep].moisture) / 10);
 		let timeDate = new Date(statData[timeStep].time * 1000);
