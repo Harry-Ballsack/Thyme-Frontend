@@ -100,13 +100,14 @@ document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
 
 async function displayStationData(station, login, pass) {
+	let statData = [];
 	
 	if(station.data == null) {
-		let statData = await get_data(station.id, login, pass, 70);
+		statData = await get_data(station.id, login, pass, 70);
 		station.data = statData;
 		console.log(statData);
 	} else {
-		let statData = station.data;
+		statData = station.data;
 	}
 	
 	MOISTLBL.innerHTML = statData[0].moisture;
