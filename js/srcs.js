@@ -101,8 +101,13 @@ NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStatio
 
 async function displayStationData(station, login, pass) {
 	
-	let statData = await get_data(station.id, login, pass, 70);
-	console.log(statData);
+	if(!station.data) {
+		let statData = await get_data(station.id, login, pass, 70);
+		station.data = statData;
+		console.log(statData);
+	} else {
+		let statData = station.data;
+	}
 	
 	MOISTLBL.innerHTML = statData[0].moisture;
 	TEMPLBL.innerHTML = statData[0].temperature;
