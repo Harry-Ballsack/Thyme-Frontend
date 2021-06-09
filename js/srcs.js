@@ -238,7 +238,7 @@ function addToWaterTime(t) {
 
 async function setWaterTime(){
 	currentStation.conf.watering_duration = parseInt(WATERTIME.value);
-	await update_conf(currentStation.conf, currentStation.id, USRID, PASS);
+	await update_conf(JSON.stringify(currentStation.conf), currentStation.id, USRID, PASS);
 	let newConf = await get_station(currentStation.id, USRID, PASS);
 	console.log(newConf);
 }
