@@ -215,7 +215,7 @@ button:hover
 	width: 1em;
 }
 
-#plantWrapper
+#sideImagesWrapper
 {
 	float: left;
 	width: 20%;
@@ -223,5 +223,16 @@ button:hover
 
 #pottedPlant
 {
-	width: 100%
+	width: 100%;
+}
+
+#cloudWrapper
+{
+	margin: auto;
+	width: 80%;
+}
+
+#cloud
+{
+	width: 100%;
 }
