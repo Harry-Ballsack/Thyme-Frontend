@@ -214,3 +214,14 @@ button:hover
 {
 	width: 1em;
 }
+
+#plantWrapper
+{
+	float: left;
+	width: 20%;
+}
+
+#pottedPlant
+{
+	width: 100%
+}
