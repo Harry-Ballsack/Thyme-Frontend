@@ -101,7 +101,7 @@ NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStatio
 
 async function displayStationData(station, login, pass) {
 	
-	if(!station.data) {
+	if(station.data == null) {
 		let statData = await get_data(station.id, login, pass, 70);
 		station.data = statData;
 		console.log(statData);
