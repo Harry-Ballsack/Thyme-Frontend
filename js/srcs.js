@@ -99,14 +99,15 @@ setActiveStation(currentStation, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
 
-async function displayStationData(id, login, pass) {
+async function displayStationData(station, login, pass) {
 	
-	let statData = await get_data(id, login, pass, 70);
+	let statData = await get_data(station.id, login, pass, 70);
 	console.log(statData);
 	
 	MOISTLBL.innerHTML = statData[0].moisture;
 	TEMPLBL.innerHTML = statData[0].temperature;
 	TANKLBL.innerHTML = statData[0].tank_fill;
+	WATERTIME.value = station.conf.watering_duration;
 	
 	let newDataTemp = [];
 	let newDataMoist = [];
@@ -116,8 +117,8 @@ async function displayStationData(id, login, pass) {
 		timeStep = statData.length - 6*(i+1);
 		newDataTemp.push(statData[timeStep].temperature);
 		newDataMoist.push((statData[timeStep].moisture) / 10);
-		console.log(statData[timeStep].time);
 		let timeDate = new Date(statData[timeStep].time * 1000);
+		console.log(timeDate);
 		let timeString = timeDate.getHours() + ":" + timeDate.getMinutes();
 		xAxisTimes.push(timeString);
 	}
@@ -146,7 +147,7 @@ async function setActiveStation(station, login, pass) {
 	console.log(station.id);
 	document.getElementById(station.id + "w").style.setProperty("background-color", "white");
 	document.getElementById(station.id + "w").style.setProperty("color", "grey");
-	let displayData = await displayStationData(station.id, login, pass);
+	let displayData = await displayStationData(station, login, pass);
 	currentStation = station;
 	currentConfig = await get_station(currentStation.id, USRID, PASS).conf;
 	console.log("now active: " + station.id);
@@ -230,16 +231,10 @@ function addToWaterTime(t) {
 }
 
 async function setWaterTime(){
-	let currentStationData = await get_station(currentStation.id, USRID, PASS);
-	console.log(currentStationData);
-	let currentConfig = JSON.parse(currentStationData.conf);
-	console.log(currentConfig);
-	console.log(currentStationData.watering_duration);
-	
-	
-	/*currentConfig.water_time = parseInt(WATERTIME.value);
-	let newconf = await update_conf(currentConfig, currentStation, USRID, PASS);
-	console.log(newconf);*/
+	currentStation.conf.watering_duration = parseInt(WATERTIME.value);
+	await update_conf(currentStation.conf, currentStation.id, USRID, PASS);
+	let newConf = await get_station(currentStation.id, USRID, PASS);
+	console.log(newConf);
 }
 
 function setMeterLevel( meter, percentage ) {
