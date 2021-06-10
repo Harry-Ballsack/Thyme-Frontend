@@ -40,7 +40,7 @@ var myChart = new Chart(chart, {
 	type: 'line',
 	data: {
 		labels: [1,2,3,4,5,6,7,8,9,10],
-		datasets: [{
+		datasets: [/*{
 			label: 'Temperatur',
 			data: [0,0,0,0,0,0,0,0,0,0],
 			pointRadius: 0,
@@ -53,7 +53,7 @@ var myChart = new Chart(chart, {
 			pointRadius: 0,
 			borderColor: '#8cc0ff',
 			yAxisID: 'moistScale',
-		}]
+		}*/]
 	},
 	options: {
 		responsive: true,
@@ -117,12 +117,16 @@ async function displayStationData(station, login, pass) {
 	
 	let newDataTemp = [];
 	let newDataMoist = [];
+	let newDataHum = [];
 	let xAxisTimes = [];
 	
 	for(let i = 0; i<10; i++) {
 		timeStep = statData.length - 6*(i+1);
-		newDataTemp.push(statData[timeStep].temperature);
-		newDataMoist.push((statData[timeStep].moisture) / 10);
+		
+		newDataTemp.push(statData[timeStep].temperature + "°C");
+		newDataMoist.push((statData[timeStep].moisture) / 10 + "%");
+		newDataHum.push((statData[timeStep].moisture) + "%");
+		
 		let timeDate = new Date(statData[timeStep].time * 1000);
 		console.log(timeDate);
 		let timeString = timeDate.getHours() + ":" + timeDate.getMinutes();
@@ -130,10 +134,28 @@ async function displayStationData(station, login, pass) {
 	}
 
 	console.log(newDataTemp);
-	myChart.data.datasets[0].data = newDataTemp;
+	myChart.data.datasets.push({
+		label: "Temperatur",
+		data: newDataTemp,
+		borderColor: "#ff7d7d",
+		yAxisID: "tempScale",
+	});
 	
 	console.log(newDataMoist);
-	myChart.data.datasets[1].data = newDataMoist;	
+	myChart.data.datasets.push({
+		label: "Erdfeuchtigkeit",
+		data: newDataMoist,
+		borderColor: "#8cc0ff",
+		yAxisID: "moistScale",
+	});
+	
+	console.log(newDataHum);
+	myChart.data.datasets.push({
+		label: "Luftfeuchtigkeit",
+		data: newDataHum,
+		borderColor: "#8cc0ff",
+		yAxisID: "moistScale",
+	});
 	
 	console.log(xAxisTimes);
 	myChart.data.labels = xAxisTimes;
