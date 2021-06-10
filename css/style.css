@@ -22,6 +22,11 @@ a
 	
 }
 
+img
+{
+	width: 100%;
+}
+
 button
 {
 	cursor: pointer;
@@ -144,6 +149,11 @@ button:hover
 	transform: translateY(-50%);
 }
 
+.statListWrapper:hover
+{
+	cursor: pointer;
+}
+
 .confirmBtn
 {
 	background-color: #ff7d7d;
@@ -157,6 +167,11 @@ button:hover
 .incDecBtn
 {
 	width: 2em;
+}
+
+.drops
+{
+	opacity: 0;
 }
 
 #stationDash
@@ -226,24 +241,31 @@ button:hover
 {
 	margin: auto;
 	width: 100%;
-	height:60%;
-}
-
-#pottedPlant
-{
-	width: 100%;
-	height: 100%;
+	height:50%;
 }
 
 #cloudWrapper
 {
 	margin: auto;
 	width: 80%;
-	height: 40%;
+	height: 30%;
 }
 
-#cloud
+#cloud:hover
 {
-	width: 100%;
-	height: 100%;
+	cursor: pointer;
+}
+
+#dropWrapper
+{
+	margin: auto;
+	width: 70%;
+	height: 20%;
+}
+
+@keyframes dropFade
+{
+	0% {opacity: 0;}
+	50% {opacity: 1;}
+	100% {opacity: 0;}
 }
