@@ -89,7 +89,20 @@ var myChart = new Chart(chart, {
 				min: 0,
 				max: 100,
 			},
-		}
+		},
+		tooltips: {
+			callbacks: {
+				label: function(context) {
+					if(context.dataset.yAxisID == "tempScale") {
+						context.dataset.label += "°C";
+					}
+					if(context.dataset.yAxisID == "moistScale") {
+						context.dataset.label += "%";
+					}
+					return context.dataset.label;
+				}
+			},
+		},
 	}
 });
 
@@ -123,7 +136,7 @@ async function displayStationData(station, login, pass) {
 	for(let i = 0; i<10; i++) {
 		timeStep = statData.length - 6*(i+1);
 		
-		newDataTemp.push(statData[timeStep].temperature +);
+		newDataTemp.push(statData[timeStep].temperature);
 		newDataMoist.push((statData[timeStep].moisture) / 10);
 		newDataHum.push((statData[timeStep].moisture));
 		
