@@ -4,6 +4,11 @@ const passwdFld = document.getElementById("passwdFld");
 const loginAlert = document.getElementById("loginError");
 
 loginBtn.addEventListener("click", login);
+passwdFld.addEventListener("keyup", function(event) {
+	if(event.key === 'Enter') {
+		login();
+	}
+});
 
 async function login() {
 	try {
@@ -38,6 +43,13 @@ async function loginRequest() {
 
 async function getStations(IDs, login, pass) {
 	let stations = [];
+	
+	/*await Promise.all(IDs.map(async(s) => {
+		const newStation = await get_station(s, login, pass);
+		newStation.id = s;
+		console.log(station);
+	}));*/
+	
 	for(let i = 0; i < IDs.length; i++) {
 		let newStation = await get_station(IDs[i], login, pass);
 		newStation.id = IDs[i];
@@ -46,3 +58,4 @@ async function getStations(IDs, login, pass) {
 	console.log(stations);
 	return stations;
 }
+
