@@ -123,9 +123,9 @@ async function displayStationData(station, login, pass) {
 	for(let i = 0; i<10; i++) {
 		timeStep = statData.length - 6*(i+1);
 		
-		newDataTemp.push(statData[timeStep].temperature + "°C");
-		newDataMoist.push((statData[timeStep].moisture) / 10 + "%");
-		newDataHum.push((statData[timeStep].moisture) + "%");
+		newDataTemp.push(statData[timeStep].temperature +);
+		newDataMoist.push((statData[timeStep].moisture) / 10);
+		newDataHum.push((statData[timeStep].moisture));
 		
 		let timeDate = new Date(statData[timeStep].time * 1000);
 		console.log(timeDate);
@@ -145,7 +145,7 @@ async function displayStationData(station, login, pass) {
 	myChart.data.datasets.push({
 		label: "Erdfeuchtigkeit",
 		data: newDataMoist,
-		borderColor: "#8cc0ff",
+		borderColor: "#b1ffa8",
 		yAxisID: "moistScale",
 	});
 	
