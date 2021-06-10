@@ -93,6 +93,7 @@ var myChart = new Chart(chart, {
 		tooltips: {
 			callbacks: {
 				label: function(context) {
+					console.log(context);
 					if(context.dataset.yAxisID == "tempScale") {
 						context.dataset.label += "°C";
 					}
@@ -138,7 +139,7 @@ async function displayStationData(station, login, pass) {
 		
 		newDataTemp.push(statData[timeStep].temperature);
 		newDataMoist.push((statData[timeStep].moisture) / 10);
-		newDataHum.push((statData[timeStep].moisture));
+		newDataHum.push((statData[timeStep].humidity));
 		
 		let timeDate = new Date(statData[timeStep].time * 1000);
 		console.log(timeDate);
