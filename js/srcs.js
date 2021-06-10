@@ -33,6 +33,8 @@ const WATERTIME = document.getElementById("waterTime");
 const MOISTLBL = document.getElementById("feuchtVar");
 const TEMPLBL = document.getElementById("tempVar");
 const TANKLBL = document.getElementById("wasserstandVar");
+const WATERBTN = document.getElementById("cloud");
+
 
 
 var chart = document.getElementById('dataChart').getContext('2d');
@@ -112,6 +114,8 @@ setActiveStation(currentStation, USRID, PASS);
 //displayStationData(CURRENTSTATION, USRID, PASS);
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
+WATERBTN.addEventListener("click", rainAnimation);
+
 
 async function displayStationData(station, login, pass) {
 	let statData = [];
@@ -146,6 +150,8 @@ async function displayStationData(station, login, pass) {
 		let timeString = timeDate.getHours() + ":" + timeDate.getMinutes();
 		xAxisTimes.push(timeString);
 	}
+	
+	myChart.data.datasets = [];
 
 	console.log(newDataTemp);
 	myChart.data.datasets.push({
@@ -283,3 +289,24 @@ function setMeterLevel( meter, percentage ) {
 	document.getElementById(meter).style.setProperty('height', (100-percentage) + '%');
 }
 
+function rainAnimation() {
+	let drop1 = document.getElementById("drop1");
+	let drop2 = document.getElementById("drop2");
+	let drop3 = document.getElementById("drop3");
+	
+	setTimeout(function() {
+		drop1.style.setProperty("animation", "dropFade 1.5s");
+	}, 0);
+	
+	setTimeout(function() {
+		drop2.style.setProperty("animation", "dropFade 1.5s");
+	}, 500);
+	
+	setTimeout(function() {
+		drop3.style.setProperty("animation", "dropFade 1.5s");
+	}, 1000);
+	
+	drop1.style.animation = "";
+	drop2.style.animation = "";
+	drop3.style.animation = "";
+}
