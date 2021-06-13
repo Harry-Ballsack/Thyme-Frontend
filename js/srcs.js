@@ -5,9 +5,9 @@ console.log("name" + USRNAME);
 const PASS = sessionStorage.getItem("passwd");
 console.log("pass" + PASS);
 
-/*if(!USRNAME || !USRID || !PASS) {
+if(!USRNAME || !USRID || !PASS) {
 	location.href = "login.html";
-}*/
+}
 
 const STATIONS = (function() {
 	let jsonArray = JSON.parse(sessionStorage.getItem("stations"));
