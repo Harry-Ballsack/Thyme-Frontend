@@ -9,42 +9,39 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div id="sideBar">
-			<button id="closeSideBarBtn" class="redButton" onclick="closeSideBar()">&times;</button><br />
-			<h2>Stationeinstellungen</h2>
-			<button id="newDryBtn" onclick="setDryVal()">Neuen Trockenwert kalibrieren</button><br />
-			<button id="newWetBtn" onclick="setWetVal()">Neuen Nasswert kalibrieren</button><br />
-			<button id="threshholdBtn" onclick="setThreshhold()">Neuen Schwellenwert setzen</button><br />
-			<button id="deleteStat" class="confirmBtn" onclick="deleteCurrentStation()">Diese Station Löschen</button><br />
-			<div id="durationWrapper">
-				<label for="waterTime">Bewässerungszeit in s: </label><br />
-				<input type="text" name="waterTime" id="waterTime" value="0">
-				<button id="timeInc" class="incDecBtn" onclick="addToWaterTime(1)">+</button>
-				<button id="timeDec" class="incDecBtn" onclick="addToWaterTime(-1)">-</button>
-				<button id="timeConf" onclick="setWaterTime()">Anwenden</button>
-			</div>
-			<h2>Accounteinstellungen</h2>
-			<button id="logout" class="confirmBtn" onclick="logout()">Ausloggen</button><br />
-			<button id="deleteUsr" class="confirmBtn" onclick="deleteUser()">Account löschen</button>
-			<h2>Neue Station</h2>
-			
-		</div>
+		
 		
 		<div id="titleBar" class="title">
 			<div id="titleLbl">
-				<div id="sideBarBtnw" class="titleWrapper">
-					<button id="sideBarBtn" onclick="openSideBar()">&#9776;</button>
+				<div id="logoWrapper">
+					<img id="logoPng" src="img/logoNoText.png" alt="logo">
 				</div>
 				<div id="Titlew" class="titleWrapper">
 					<h1 id="Title" class="title">Thyme</h1>
 				</div>
 			</div>
 			<div id="statBtnw" class="statListWrapper">
-				<div id="statBtne" class="statListElement">
-					<input id="newStatBtn" type="button" value="Neue Station">
+				<div id="sideBarBtnw" class="statListElement">
+					<button id="sideBarBtn" onclick="switchSideBar()">&#9776;</button>
 				</div>
 			</div>
-			<div id="stationDash"></div>
+			<div id="stationDash">
+				<div id="station1w" class="statListWrapper">
+					<div id="station1e" class="statListElement">
+						<a href="#">station1</a>
+					</div>
+				</div>
+				<div id="station2w" class="statListWrapper">
+					<div id="station2e" class="statListElement">
+						<a href="#">station2</a>
+					</div>
+				</div>
+				<div id="station3w" class="statListWrapper">
+					<div id="station3e" class="statListElement">
+						<a href="#">station3</a>
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		<div id="sideImagesWrapper">
@@ -65,16 +62,37 @@
 		
 		
 		<div id="dataView" class="displayView">
+			<div id="menuBar" style="width: 0px">
+			
+				<h2>Stationeinstellungen</h2>
+				<button id="newStatBtn">Neue Station</button><br />
+				<button id="newDryBtn" onclick="setDryVal()">Neuen Trockenwert kalibrieren</button><br />
+				<button id="newWetBtn" onclick="setWetVal()">Neuen Nasswert kalibrieren</button><br />
+				<button id="threshholdBtn" onclick="setThreshhold()">Neuen Schwellenwert setzen</button><br />
+				<button id="deleteStat" class="confirmBtn" onclick="deleteCurrentStation()">Diese Station Löschen</button><br />
+				<div id="durationWrapper">
+					<label for="waterTime">Bewässerungszeit in s: </label><br />
+					<input type="text" name="waterTime" id="waterTime" value="0">
+					<button id="timeInc" class="incDecBtn" onclick="addToWaterTime(1)">+</button>
+					<button id="timeDec" class="incDecBtn" onclick="addToWaterTime(-1)">-</button>
+					<button id="timeConf" onclick="setWaterTime()">Anwenden</button>
+				</div>
+			
+				<h2>Accounteinstellungen</h2>
+				<button id="logout" class="confirmBtn" onclick="logout()">Ausloggen</button><br />
+				<button id="deleteUsr" class="confirmBtn" onclick="deleteUser()">Account löschen</button>
+			
+			</div>
 			
 			<div id="emptyMeterWater" class="emptyMeter" style="background-color:#8cc0ff;">
 				<div id="meterFillWater" class="meterFill">
-					<p id="feuchMeterLbl" class="meterLbl">% <br />F<br />e<br />u<br />c<br />h<br />t<br />i<br />g<br />k<br />e<br />i<br />t</p>
+					<p id="feuchMeterLbl" class="meterLbl" style="color: black;">% <br />F<br />e<br />u<br />c<br />h<br />t<br />i<br />g<br />k<br />e<br />i<br />t</p>
 				</div>
 			</div>
 			
 			<div id="emptyMeterTemp" class="emptyMeter" style="background-color:#ff7d7d;">
 				<div id="meterFillTemp" class="meterFill">
-					<p id="tempMeterLbl" class="meterLbl">T<br />e<br />m<br />p<br />e<br />r<br />a<br />t<br />u<br />r:</p>
+					<p id="tempMeterLbl" class="meterLbl" style="color: black;">T<br />e<br />m<br />p<br />e<br />r<br />a<br />t<br />u<br />r:</p>
 				</div>
 			</div>
 			
