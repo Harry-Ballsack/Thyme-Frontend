@@ -4,6 +4,7 @@ const MOISTLBL = document.getElementById("feuchtVar");
 const TEMPLBL = document.getElementById("tempVar");
 const TANKLBL = document.getElementById("wasserstandVar");
 const WATERBTN = document.getElementById("cloud");
+const MENUBAR = document.getElementById("menuBar");
 
 const USRNAME = sessionStorage.getItem("name");
 const USRID = sessionStorage.getItem("userID");
@@ -91,12 +92,12 @@ WATERBTN.addEventListener("click", rainAnimation);
 
 /* ACTIONS */
 
-function openSideBar() {
-	document.getElementById("sideBar").style.width = "25%";
-}
-
-function closeSideBar() {
-	document.getElementById("sideBar").style.width = "0";
+function switchSideBar() {
+	if(MENUBAR.style.width == "0px") {
+		MENUBAR.style.removeProperty("width");
+	} else {
+		MENUBAR.style.setProperty("width", "0px");
+	}
 }
 
 async function setWetVal() {
