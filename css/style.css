@@ -1,9 +1,10 @@
 body
 {
 	background-color: gray;
-	font-family: JetBrainsMono-Regular, JetBrains Mono;
+	font-family: Helvetica;
 	height: 100vh;
 	margin: 0px 0px 0px 0px;
+	color: white;
 	/*overflow: hidden;*/
 }
 
@@ -209,15 +210,20 @@ button:hover
 	color: grey;
 }
 
-#sideBar
+#menuBar
 {
-	width: 0;
 	position: fixed;
+	right: 0;
 	z-index: 1;
-	background-color: #4f4f4f;
+	background-color: #636363;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	transition: 0.1s;
+}
+
+#menuBar button
+{
+	margin: 2px;
 }
 
 #sideBarBtn
@@ -261,6 +267,17 @@ button:hover
 	margin: auto;
 	width: 70%;
 	height: 20%;
+}
+
+#logoWrapper
+{
+	height: 100%;
+	float: left;
+}
+
+#logoPng
+{
+	height: 100%
 }
 
 @keyframes dropFade
