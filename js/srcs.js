@@ -100,26 +100,26 @@ function closeSideBar() {
 }
 
 async function setWetVal() {
+    let s = await getStation(selectedStation);
 	if(confirm("Den momentanen Sensorwert als Nasswert zu übernehmen?")){
-		currentConfig.moisture_sensor_wet = statData[0].moisture;
-		let newconf = await update_conf(currentConfig, currentStation.id, USRID, PASS);
-		return newconf;
+		s.conf.moisture_sensor_wet = s.data[0].moisture;
+		await update_conf(s.conf, s.id, USRID, PASS);
 	}
 }
 
 async function setDryVal() {
+    let s = await getStation(selectedStation);
 	if(confirm("Den momentanen Sensorwert als Trockenwert übernehmen?")){
-		currentConfig.moisture_sensor_dry = statData[0].moisture;
-		let newconf = await update_conf(currentConfig, currentStation.id, USRID, PASS);
-		return newconf;
+		s.conf.moisture_sensor_dry = s.data[0].moisture;
+		await update_conf(s.conf, s.id, USRID, PASS);
 	}
 }
 
 async function setThreshhold() {
+    let s = await getStation(selectedStation);
 	if(confirm("Den momentanen Sensorwert als Schwellenwert zum Wässern übernehmen?")){
-		currentConfig.moisture_threshold = statData[0].moisture;
-		let newconf = await update_conf(currentConfig, currentStation.id, USRID, PASS);
-		return newconf;
+		s.conf.moisture_threshold = s.data[0].moisture;
+		await update_conf(s.conf, s.id, USRID, PASS);
 	}
 }
 
@@ -149,18 +149,14 @@ function addToWaterTime(t) {
 }
 
 async function setWaterTime(){
-	currentStation.conf.watering_duration = parseInt(WATERTIME.value);
-	await update_conf(JSON.stringify(currentStation.conf), currentStation.id, USRID, PASS);
-	let newConf = await get_station(currentStation.id, USRID, PASS);
-	console.log(newConf);
-}
-
-function setMeterLevel( meter, percentage ) {
-	document.getElementById(meter).style.setProperty('height', (100-percentage) + '%');
+    let s = await getStation(selectedStation);
+	s.conf.watering_duration = parseInt(WATERTIME.value);
+	await update_conf(s.conf, s.id, USRID, PASS);
 }
 
 async function rainAnimation() {
-    await update_state("water", await getStation(selectedStation).id, USRID, PASS);
+    const s = await getStation(selectedStation);
+    await update_state("water", s.id, USRID, PASS);
 
 	let drop1 = document.getElementById("drop1");
 	let drop2 = document.getElementById("drop2");
@@ -265,6 +261,10 @@ async function redraw() {
 	    setMeterLevel('meterFillWater', Math.max(Math.min((statData[statData.length - 1].moisture)/10, 100), 0));
 	    setMeterLevel('meterFillTemp', statData[statData.length - 1].temperature);
     }
+}
+
+function setMeterLevel( meter, percentage ) {
+	document.getElementById(meter).style.setProperty('height', (100-percentage) + '%');
 }
 
 /* LOCAL STATION DATA CACHE */

@@ -56,7 +56,8 @@ async function get_station(id, login, pass) {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         }
     });
-    const data = await resp.json();
+    let data = await resp.json();
+    data.conf = JSON.parse(data.conf)
     return data;
 }
 
@@ -118,7 +119,7 @@ async function update_conf(conf, id, login, pass) {
             "Authorization": "Basic " + btoa(login + ":" + pass)
         },
         body: JSON.stringify({
-            conf,
+            conf: JSON.stringify(conf),
         })
     });
 }
