@@ -48,7 +48,7 @@ async function login() {
 async function fetch_station() {
     get_station(station_fld.value, login_fld.value, pass_fld.value).then(d => {
         station_lbl.textContent = d.name;
-        conf_fld.value = d.conf;
+        conf_fld.value = JSON.stringify(d.conf);
     });
     get_state(station_fld.value, login_fld.value, pass_fld.value).then(d => state_fld.value = d);
 
@@ -84,5 +84,5 @@ async function state() {
 }
 
 async function conf() {
-    await update_conf(conf_fld.value, station_fld.value, login_fld.value, pass_fld.value);
+    await update_conf(JSON.parse(conf_fld.value), station_fld.value, login_fld.value, pass_fld.value);
 }
