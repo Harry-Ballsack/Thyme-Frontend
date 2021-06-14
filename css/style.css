@@ -263,7 +263,7 @@ button:hover
 
 #cloud:hover
 {
-	cursor: pointer;
+	/*cursor: pointer;*/
 	cursor: var(cloudHoverStyle);
 }
 
