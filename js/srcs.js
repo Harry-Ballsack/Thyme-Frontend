@@ -159,8 +159,25 @@ async function waterRequest() {
 	let s = await getStation(selectedStation);
 	let state = await get_state(s.id, USRID, PASS);
 	console.log(state);
+	
+	if(state != "empty") {
+		setWaterInput(false);
+		await set_state("water", s.id, USRID, PASS);
+		setWaterInput(true);
+	} else {
+		setWaterInput(false);
+	}
 }
-		
+
+function setWaterInput(inputEnable) {
+		if(inputEnable == true) {
+			WATERBTN.onclick = "rainAnimation()";
+			WATERBTN.style.setProperty("cloudHoverStyle", "pointer");
+		} else if(inputEnable == false) {
+			WATERBTN.onclick = "";
+			WATERBTN.style.setProperty("cloudHoverStyle", "not-allowed");
+		}
+}
 
 async function rainAnimation() {
     const s = await getStation(selectedStation);
