@@ -190,9 +190,18 @@ button:hover
 	height: 100%;
 }
 
+#titleLbl:hover{
+	cursor: pointer;
+}
+
 #titleBar
 {
 	height: 10%;
+}
+
+#titleBar:hover
+{
+	cursor: pointer;
 }
 
 #newStatBtn
