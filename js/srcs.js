@@ -158,7 +158,6 @@ async function setWaterTime(){
 async function waterRequest() {
 	let s = await getStation(selectedStation);
 	let state = await get_state(s.id, USRID, PASS);
-	state = JSON.parse(state).state;
 	console.log(state);
 }
 		
