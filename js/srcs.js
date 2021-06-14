@@ -155,6 +155,14 @@ async function setWaterTime(){
 	await update_conf(s.conf, s.id, USRID, PASS);
 }
 
+async function waterRequest() {
+	let s = await getStation(selectedStation);
+	let state = await get_state(s.id, USRID, PASS);
+	state = JSON.parse(state).state;
+	console.log(state);
+}
+		
+
 async function rainAnimation() {
     const s = await getStation(selectedStation);
     await update_state("water", s.id, USRID, PASS);
@@ -178,6 +186,10 @@ async function rainAnimation() {
 	drop1.style.animation = "";
 	drop2.style.animation = "";
 	drop3.style.animation = "";
+}
+
+function homeLink() {
+	location.href = "index.html";
 }
 
 /* RENDERING */
@@ -223,7 +235,7 @@ async function redraw() {
 	    let newDataHum = [];
 	    let xAxisTimes = [];
 	
-	    for(let i = statData.length - 1; i >= 0; i -= 1) {
+	    for(let i = statData.length - 1; i >= (statData.length - (12*6)); i -= 1) {
 		    newDataTemp.push(statData[i].temperature);
 		    newDataMoist.push((statData[i].moisture) / 10);
 		    newDataHum.push((statData[i].humidity));

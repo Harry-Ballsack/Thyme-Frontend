@@ -33,3 +33,7 @@ async function registerRequest() {
 	sessionStorage.setItem("passwd", pass1);
 	location.href = "index.html";
 }
+
+function homeLink() {
+	location.href = "index.html";
+}

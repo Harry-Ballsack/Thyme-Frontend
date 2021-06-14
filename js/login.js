@@ -31,4 +31,3 @@ async function loginRequest() {
 		location.href = "index.html";
 	}
 }
-
