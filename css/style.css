@@ -269,6 +269,7 @@ button:hover
 #cloud:hover
 {
 	cursor: pointer;
+	cursor: var(cloudHoverStyle);
 }
 
 #dropWrapper
