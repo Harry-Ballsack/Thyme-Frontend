@@ -199,11 +199,6 @@ button:hover
 	height: 10%;
 }
 
-#titleBar:hover
-{
-	cursor: pointer;
-}
-
 #newStatBtn
 {
 	cursor: pointer;
