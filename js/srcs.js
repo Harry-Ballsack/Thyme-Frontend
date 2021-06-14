@@ -172,10 +172,10 @@ async function waterRequest() {
 function setWaterInput(inputEnable) {
 		if(inputEnable == true) {
 			WATERBTN.onclick = "rainAnimation()";
-			WATERBTN.style.setProperty("cloudHoverStyle", "pointer");
+			WATERBTN.style.setProperty("--cloudHoverStyle", "pointer");
 		} else if(inputEnable == false) {
 			WATERBTN.onclick = "";
-			WATERBTN.style.setProperty("cloudHoverStyle", "not-allowed");
+			WATERBTN.style.setProperty("--cloudHoverStyle", "not-allowed");
 		}
 }
 
