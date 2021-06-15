@@ -320,18 +320,18 @@ async function redraw() {
 		}
 	    
 	    WATERTIME.value = station.conf.watering_duration;
-		switch(station.conf.watering_duration) {
-			case "1":
+		switch(parseFloat(station.conf.watering_duration)) {
+			case 1:
 				setActivePlantSize(0);
 				break;
-			case "2":
+			case 2:
 				setActivePlantSize(1);
 				break;
-			case "4":
+			case 4:
 				setActivePlantSize(2);
 				break;
 		}
-		switch(station.conf.moisture_threshold) {
+		switch(parseFloat(station.conf.moisture_threshold)) {
 			case 650:
 				NUTZPFLBTN.checked = true;
 				ZIMMPFLBTN.checked = false;
