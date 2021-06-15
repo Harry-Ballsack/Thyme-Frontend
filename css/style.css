@@ -164,6 +164,27 @@ button:hover {
 	opacity: 0;
 }
 
+.potWrapper {
+	height: 100%;
+	width: 30%;
+	float: left;
+	border-width: thin;
+}
+
+.potWrapper:hover {
+	cursor: pointer;
+}
+
+.potWrapper img {
+	height: 100%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	border-width: 2px;
+	margin: auto;
+	display: block;
+}
+
 #stationDash {
 	height: 100%;
 	float: right;
@@ -204,8 +225,8 @@ button:hover {
 	z-index: 1;
 	background-color: #636363;
 	overflow-x: hidden;
-	overflow-y: hidden;
-	
+	/*overflow-y: hidden;*/
+	height: 50%;
 }
 
 #menuBar button {
@@ -264,6 +285,22 @@ button:hover {
 #logo {
 	height: 80%;
     padding: 10%;
+}
+
+#potSizes {
+	height: 30%;
+}
+
+#smallPotImg {
+	width: 50%;
+}
+
+#mediumPotImg {
+	width: 75%;
+}
+
+#largePotImg {
+	width: 100%;
 }
 
 @keyframes dropFade {
