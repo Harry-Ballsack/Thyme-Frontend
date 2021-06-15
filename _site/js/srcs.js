@@ -108,7 +108,7 @@ function switchSideBar() {
 async function setWetVal() {
     let s = await getStation(selectedStation);
 
-	new_moisture_sensor_wet=prompt("Benutzerdefinierter Trockenwert: ",s.conf.moisture_sensor_wet);
+	new_moisture_sensor_wet=prompt("Benutzerdefinierter Nasswert: ",s.conf.moisture_sensor_wet);
 	if(new_moisture_sensor_wet!=null){
 		s.conf.moisture_sensor_wet=new_moisture_sensor_wet;
 		await update_conf(s.conf, s.id, USRID,PASS);
