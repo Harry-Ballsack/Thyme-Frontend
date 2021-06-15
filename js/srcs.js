@@ -90,7 +90,7 @@ var myChart = new Chart(chart, {
 
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
-WATERBTN.addEventListener("click", rainAnimation);
+WATERBTN.addEventListener("click", waterRequest);
 
 /* ACTIONS */
 
@@ -181,15 +181,10 @@ async function setWaterTime(){
 
 async function waterRequest() {
 	let s = await getStation(selectedStation);
-	let state = await get_state(s.id, USRID, PASS);
-	console.log(state);
 	
-	if(state != "empty") {
-		setWaterInput(false);
+	if(s.state != "empty") {
 		await update_state("water", s.id, USRID, PASS);
-		setWaterInput(true);
-	} else {
-		setWaterInput(false);
+        rainAnimation();
 	}
 }
 
@@ -204,9 +199,6 @@ function setWaterInput(inputEnable) {
 }
 
 async function rainAnimation() {
-    const s = await getStation(selectedStation);
-    await update_state("water", s.id, USRID, PASS);
-
 	let drop1 = document.getElementById("drop1");
 	let drop2 = document.getElementById("drop2");
 	let drop3 = document.getElementById("drop3");
@@ -241,7 +233,7 @@ async function redraw() {
 		stationList += "<div id=" + i + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + i + "e class=\"statListElement\">";
         // Access cache directly as sensor data is not needed
-		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : stationCache[i].id) + "</b></p>";
+		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : "...") + "</b></p>";
 		stationList += "</div></div>";
 	}
 	
