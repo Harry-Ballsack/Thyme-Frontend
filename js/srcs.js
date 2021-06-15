@@ -345,7 +345,7 @@ async function redraw() {
 	    let newDataHum = [];
 	    let xAxisTimes = [];
 	
-	    for(let i = Math.min(statData.length, 12 * 6); i >= 0; i -= 1) {
+	    for(let i = Math.min(statData.length - 1, 12 * 6); i >= 0; i -= 1) {
 		    newDataTemp.push(statData[i].temperature);
 		    newDataMoist.push(Math.min((statData[i].moisture) / 10, 100));
 		    newDataHum.push((statData[i].humidity));
