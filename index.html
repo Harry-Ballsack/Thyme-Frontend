@@ -50,6 +50,26 @@
 			<div id="menuBar" style="width: 0px">
 			
 				<h2>Stationeinstellungen</h2>
+				<h3>Topfgröße</h3>
+				<div id="potSizes" style="margin: 2px;">
+					<div id="smallPotWrapper" class="potWrapper" onclick="setActivePlantSize(0)">
+						<img id="smallPotImg" src="img/plant.svg">
+					</div>
+					<div id="mediumPotWrapper" class="potWrapper" onclick="setActivePlantSize(1)">
+						<img id="mediumPotImg" src="img/plant.svg">
+					</div>
+					<div id="largePotWrapper" class="potWrapper" onclick="setActivePlantSize(2)">
+						<img id="largePotImg" src="img/plant.svg">
+					</div>
+				</div>
+				
+				<h3>Pflanzenart</h3>
+				<input type="radio" id="nutzPflanzeBtn" name="pflanzenArt" value="Nutzpflanze">
+				<label for="nutzPflanzeBtn">Nutzpflanze</label><br />
+				<input type="radio" id="zimmerPflanzeBtn" name="pflanzenArt" value="Zimmerpflanze">
+				<label for="zimmerPflanzeBtn">Zimmerpflanze</label><br />
+				
+				<h3>Erweitert</h3>
 				<button id="newStatBtn">Neue Station</button><br />
 				<button id="newDryBtn" onclick="setDryVal()">Neuen Trockenwert kalibrieren</button><br />
 				<button id="newWetBtn" onclick="setWetVal()">Neuen Nasswert kalibrieren</button><br />
@@ -62,6 +82,7 @@
 					<button id="timeDec" class="incDecBtn" onclick="addToWaterTime(-1)">-</button>
 					<button id="timeConf" onclick="setWaterTime()">Anwenden</button>
 				</div>
+				<button id="saveSettings" onclick="saveNewConf()">Einstellungen speichern</button>
 			
 				<h2>Accounteinstellungen</h2>
 				<button id="logout" class="confirmBtn" onclick="logout()">Ausloggen</button><br />
