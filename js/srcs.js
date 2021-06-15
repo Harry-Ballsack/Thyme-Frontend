@@ -15,9 +15,9 @@ const USRNAME = sessionStorage.getItem("name");
 const USRID = sessionStorage.getItem("userID");
 const PASS = sessionStorage.getItem("passwd");
 
-/*if(!USRNAME || !USRID || !PASS) {
+if(!USRNAME || !USRID || !PASS) {
 	location.href = "login.html";
-}*/
+}
 
 var chart = document.getElementById('dataChart').getContext('2d');
 var myChart = new Chart(chart, {
