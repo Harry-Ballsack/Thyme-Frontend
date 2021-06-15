@@ -2,7 +2,7 @@ const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
 const MOISTLBL = document.getElementById("feuchtVar");
 const TEMPLBL = document.getElementById("tempVar");
-const STATUSBL = document.getElementById("stationstatusVar");
+const TANKLBL = document.getElementById("wasserstandVar");
 const WATERBTN = document.getElementById("cloud");
 const MENUBAR = document.getElementById("menuBar");
 
@@ -10,9 +10,9 @@ const USRNAME = sessionStorage.getItem("name");
 const USRID = sessionStorage.getItem("userID");
 const PASS = sessionStorage.getItem("passwd");
 
-if(!USRNAME || !USRID || !PASS) {
+/*if(!USRNAME || !USRID || !PASS) {
 	location.href = "login.html";
-}
+}*/
 
 var chart = document.getElementById('dataChart').getContext('2d');
 var myChart = new Chart(chart, {
@@ -54,8 +54,6 @@ var myChart = new Chart(chart, {
 					display: true,
 					text: 'Temperatur/°C',
 				},
-				min: 0,
-				max: 40,
 			},
 			moistScale: {
 				type: 'linear',
@@ -90,62 +88,40 @@ var myChart = new Chart(chart, {
 
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
-WATERBTN.addEventListener("click", waterRequest);
+WATERBTN.addEventListener("click", rainAnimation);
 
 /* ACTIONS */
 
 function switchSideBar() {
 	if(MENUBAR.style.width == "0px") {
 		MENUBAR.style.removeProperty("width");
-		MENUBAR.style.removeProperty("padding");
-		MENUBAR.style.setProperty("padding", "1em");
 	} else {
-		MENUBAR.style.setProperty("padding", "0px");
 		MENUBAR.style.setProperty("width", "0px");
 	}
 }
 
 async function setWetVal() {
     let s = await getStation(selectedStation);
-
-	new_moisture_sensor_wet=prompt("Benutzerdefinierter Nasswert: ",s.conf.moisture_sensor_wet);
-	if(new_moisture_sensor_wet!=null){
-		s.conf.moisture_sensor_wet=new_moisture_sensor_wet;
-		await update_conf(s.conf, s.id, USRID,PASS);
-	}
-
-/* 	if(confirm("Den momentanen Sensorwert als Nasswert zu übernehmen?")){
+	if(confirm("Den momentanen Sensorwert als Nasswert zu übernehmen?")){
 		s.conf.moisture_sensor_wet = s.data[0].moisture;
 		await update_conf(s.conf, s.id, USRID, PASS);
-	} */
+	}
 }
 
 async function setDryVal() {
     let s = await getStation(selectedStation);
-
-	new_moisture_sensor_dry=prompt("Benutzerdefinierter Trockenwert: ",s.conf.moisture_sensor_dry);
-	if(new_moisture_sensor_dry!=null){
-		s.conf.moisture_sensor_dry=new_moisture_sensor_dry;
-		await update_conf(s.conf, s.id, USRID,PASS);
-	}
-
-/* 	if(confirm("Den momentanen Sensorwert als Trockenwert übernehmen?")){
+	if(confirm("Den momentanen Sensorwert als Trockenwert übernehmen?")){
 		s.conf.moisture_sensor_dry = s.data[0].moisture;
 		await update_conf(s.conf, s.id, USRID, PASS);
-	} */
+	}
 }
 
 async function setThreshhold() {
     let s = await getStation(selectedStation);
-	new_moisture_threshold=prompt("Geben Sie einen  Schwellenwert in Prozent (%) ein: ",s.conf.moisture_threshold/10);
-	if(new_moisture_threshold!=null){
-		s.conf.moisture_threshold=new_moisture_threshold*10;
-		await update_conf(s.conf, s.id, USRID,PASS);
-	}
-/* 	if(confirm("Den momentanen Sensorwert als Schwellenwert zum Wässern übernehmen?")){
+	if(confirm("Den momentanen Sensorwert als Schwellenwert zum Wässern übernehmen?")){
 		s.conf.moisture_threshold = s.data[0].moisture;
 		await update_conf(s.conf, s.id, USRID, PASS);
-	} */
+	}
 }
 
 async function deleteCurrentStation() {
@@ -181,10 +157,15 @@ async function setWaterTime(){
 
 async function waterRequest() {
 	let s = await getStation(selectedStation);
+	let state = await get_state(s.id, USRID, PASS);
+	console.log(state);
 	
-	if(s.state != "empty") {
-		await update_state("water", s.id, USRID, PASS);
-        rainAnimation();
+	if(state != "empty") {
+		setWaterInput(false);
+		await set_state("water", s.id, USRID, PASS);
+		setWaterInput(true);
+	} else {
+		setWaterInput(false);
 	}
 }
 
@@ -199,6 +180,9 @@ function setWaterInput(inputEnable) {
 }
 
 async function rainAnimation() {
+    const s = await getStation(selectedStation);
+    await update_state("water", s.id, USRID, PASS);
+
 	let drop1 = document.getElementById("drop1");
 	let drop2 = document.getElementById("drop2");
 	let drop3 = document.getElementById("drop3");
@@ -233,10 +217,9 @@ async function redraw() {
 		stationList += "<div id=" + i + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + i + "e class=\"statListElement\">";
         // Access cache directly as sensor data is not needed
-		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : "...") + "</b></p>";
+		stationList += "<p>" + (stationCache[i].name != undefined ? stationCache[i].name : ("Station " + (i + 1))) + "</p>";
 		stationList += "</div></div>";
 	}
-	
 	statListField.innerHTML = stationList;
 	
 	for (let i = 0; i < stationCount(); i++) {
@@ -245,32 +228,22 @@ async function redraw() {
             redraw().then(_ => {});
         });
 	}
-	
+
     if (selectedStation != null && selectedStation < stationCount()) {
         for(let i = 0; i < stationCount(); i++) {
-		    document.getElementById(i + "w").style.setProperty("background-color", "#707070");
-		    document.getElementById(i + "w").style.setProperty("color", "#FFFFFF");
+		    document.getElementById(i + "w").style.setProperty("background-color", "grey");
+		    document.getElementById(i + "w").style.setProperty("color", "white");
 	    }
-	    document.getElementById(selectedStation + "w").style.setProperty("background-color", "#FFFFFF");
-	    document.getElementById(selectedStation + "w").style.setProperty("color", "#707070");
+	    document.getElementById(selectedStation + "w").style.setProperty("background-color", "white");
+	    document.getElementById(selectedStation + "w").style.setProperty("color", "grey");
 
         const station = await getStation(selectedStation);
 
 	    let statData = station.data;
-		const current_status = station.state;
-	    MOISTLBL.innerHTML = statData[statData.length - 1].moisture / 10 + " %";
-	    TEMPLBL.innerHTML = statData[statData.length - 1].temperature + " °C";
-		if (current_status=="water") {
-			STATUSBL.innerHTML = "bewässert";
-			STATUSBL.style = "color: #C1FFFD";
-		} else if (current_status=="idle") {
-			STATUSBL.innerHTML = "OK";
-			STATUSBL.style = "color: #C5FAB2";
-		} else {
-			STATUSBL.innerHTML = "Tank empty";
-			STATUSBL.style = "color: #E0E0E0";
-		}
-	    
+	
+	    MOISTLBL.innerHTML = statData[0].moisture;
+	    TEMPLBL.innerHTML = statData[0].temperature;
+	    TANKLBL.innerHTML = statData[0].tank_fill;
 	    WATERTIME.value = station.conf.watering_duration;
 	
 	    let newDataTemp = [];
@@ -278,9 +251,9 @@ async function redraw() {
 	    let newDataHum = [];
 	    let xAxisTimes = [];
 	
-	    for(let i = Math.max(0, statData.length - (12*6) - 1); i < statData.length; i += 1) {
+	    for(let i = statData.length - 1; i >= (statData.length - (12*6)); i -= 1) {
 		    newDataTemp.push(statData[i].temperature);
-		    newDataMoist.push(Math.min((statData[i].moisture) / 10, 100));
+		    newDataMoist.push((statData[i].moisture) / 10);
 		    newDataHum.push((statData[i].humidity));
 		
 		    let timeDate = new Date(statData[i].time * 1000);
@@ -293,21 +266,21 @@ async function redraw() {
 	    myChart.data.datasets.push({
 		    label: "Temperatur",
 		    data: newDataTemp,
-		    borderColor: "#C5FAB2",
+		    borderColor: "#ff7d7d",
 		    yAxisID: "tempScale",
 	    });
 	
 	    myChart.data.datasets.push({
 		    label: "Erdfeuchtigkeit",
 		    data: newDataMoist,
-		    borderColor: "#C1FFFD",
+		    borderColor: "#b1ffa8",
 		    yAxisID: "moistScale",
 	    });
 	
 	    myChart.data.datasets.push({
 		    label: "Luftfeuchtigkeit",
 		    data: newDataHum,
-		    borderColor: "#E0E0E0",
+		    borderColor: "#8cc0ff",
 		    yAxisID: "moistScale",
 	    });
 	
@@ -338,17 +311,11 @@ async function repopulateStationCache() {
             id: s
         });
     }
-
     await redraw();
-
     for (let s of stationCache) {
 	    get_station(s.id, USRID, PASS).then(d => {
             s.name = d.name;
             s.conf = d.conf;
-
-            if (selectedStation == null) {
-		        selectedStation = 0;
-            }
             redraw().then(_ => {});
         });
     }
@@ -363,9 +330,8 @@ async function getStation(i) {
     if (stationCache[i].data != undefined) {
         return stationCache[i];
     } else {
-	    const [data, state] = await Promise.all([get_data(stationCache[i].id, USRID, PASS), get_state(stationCache[i].id, USRID, PASS)]);
+	    let data = await get_data(stationCache[i].id, USRID, PASS);
         stationCache[i].data = data;
-        stationCache[i].state = state;
         return stationCache[i];
     }
 }
