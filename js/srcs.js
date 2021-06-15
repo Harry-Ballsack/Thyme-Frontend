@@ -241,7 +241,7 @@ async function redraw() {
 		stationList += "<div id=" + i + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + i + "e class=\"statListElement\">";
         // Access cache directly as sensor data is not needed
-		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : ("")) + "</b></p>";
+		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : stationCache[i].id) + "</b></p>";
 		stationList += "</div></div>";
 	}
 	
@@ -256,28 +256,27 @@ async function redraw() {
 	
     if (selectedStation != null && selectedStation < stationCount()) {
         for(let i = 0; i < stationCount(); i++) {
-		    document.getElementById(i + "w").style.setProperty("background-color", "grey");
-		    document.getElementById(i + "w").style.setProperty("color", "white");
+		    document.getElementById(i + "w").style.setProperty("background-color", "#707070");
+		    document.getElementById(i + "w").style.setProperty("color", "#FFFFFF");
 	    }
+	    document.getElementById(selectedStation + "w").style.setProperty("background-color", "#FFFFFF");
+	    document.getElementById(selectedStation + "w").style.setProperty("color", "#707070");
+
         const station = await getStation(selectedStation);
 
-	    document.getElementById(selectedStation + "w").style.setProperty("background-color", "white");
-	    document.getElementById(selectedStation + "w").style.setProperty("color", "grey");
-
 	    let statData = station.data;
-		current_status=await get_state(station.id,USRID,PASS);
-	    MOISTLBL.innerHTML = statData[statData.length-1].moisture/10+" %";
-	    TEMPLBL.innerHTML = statData[statData.length-1].temperature + " °C";
-		if(current_status=="water"){
+		const current_status = station.state;
+	    MOISTLBL.innerHTML = statData[statData.length - 1].moisture / 10 + " %";
+	    TEMPLBL.innerHTML = statData[statData.length - 1].temperature + " °C";
+		if (current_status=="water") {
 			STATUSBL.innerHTML = "bewässert";
-			STATUSBL.style="color:lightblue";
-		}else if(current_status=="idle"){
+			STATUSBL.style = "color: #C1FFFD";
+		} else if (current_status=="idle") {
 			STATUSBL.innerHTML = "OK";
-			STATUSBL.style="color:lightgreen";
-		}
-		else{
+			STATUSBL.style = "color: #C5FAB2";
+		} else {
 			STATUSBL.innerHTML = "Tank empty";
-			STATUSBL.style="color:lightred";
+			STATUSBL.style = "color: #E0E0E0";
 		}
 	    
 	    WATERTIME.value = station.conf.watering_duration;
@@ -289,7 +288,7 @@ async function redraw() {
 	
 	    for(let i = Math.max(0, statData.length - (12*6) - 1); i < statData.length; i += 1) {
 		    newDataTemp.push(statData[i].temperature);
-		    newDataMoist.push((statData[i].moisture) / 10);
+		    newDataMoist.push(Math.min((statData[i].moisture) / 10, 100));
 		    newDataHum.push((statData[i].humidity));
 		
 		    let timeDate = new Date(statData[i].time * 1000);
@@ -302,21 +301,21 @@ async function redraw() {
 	    myChart.data.datasets.push({
 		    label: "Temperatur",
 		    data: newDataTemp,
-		    borderColor: "#ff7d7d",
+		    borderColor: "#C5FAB2",
 		    yAxisID: "tempScale",
 	    });
 	
 	    myChart.data.datasets.push({
 		    label: "Erdfeuchtigkeit",
 		    data: newDataMoist,
-		    borderColor: "#b1ffa8",
+		    borderColor: "#C1FFFD",
 		    yAxisID: "moistScale",
 	    });
 	
 	    myChart.data.datasets.push({
 		    label: "Luftfeuchtigkeit",
 		    data: newDataHum,
-		    borderColor: "#8cc0ff",
+		    borderColor: "#E0E0E0",
 		    yAxisID: "moistScale",
 	    });
 	
@@ -325,10 +324,7 @@ async function redraw() {
 	
 	    setMeterLevel('meterFillWater', Math.max(Math.min((statData[statData.length - 1].moisture)/10, 100), 0));
 	    setMeterLevel('meterFillTemp', statData[statData.length - 1].temperature);
-    }else{
-		selectedStation = 0;
-        redraw().then(_ => {});
-	}
+    }
 }
 
 function setMeterLevel( meter, percentage ) {
@@ -350,11 +346,17 @@ async function repopulateStationCache() {
             id: s
         });
     }
+
     await redraw();
+
     for (let s of stationCache) {
 	    get_station(s.id, USRID, PASS).then(d => {
             s.name = d.name;
             s.conf = d.conf;
+
+            if (selectedStation == null) {
+		        selectedStation = 0;
+            }
             redraw().then(_ => {});
         });
     }
@@ -369,8 +371,9 @@ async function getStation(i) {
     if (stationCache[i].data != undefined) {
         return stationCache[i];
     } else {
-	    let data = await get_data(stationCache[i].id, USRID, PASS);
+	    const [data, state] = await Promise.all([get_data(stationCache[i].id, USRID, PASS), get_state(stationCache[i].id, USRID, PASS)]);
         stationCache[i].data = data;
+        stationCache[i].state = state;
         return stationCache[i];
     }
 }

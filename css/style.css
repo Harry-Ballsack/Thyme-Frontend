@@ -1,184 +1,170 @@
-body
-{
-	background-color: gray;
+/* 
+Colours
+---
+
+White: #FFFFFF
+Grey: #707070
+Light-Grey: #E0E0E0
+Green: #C5FAB2
+Blue: #C1FFFD
+*/
+
+
+body {
+	background-color: #707070;
 	font-family: Helvetica;
 	height: 100vh;
 	margin: 0px 0px 0px 0px;
-	color: white;
+	color: #FFFFFF;
 	/*overflow: hidden;*/
 }
 
-h1
-{
+h1 {
 	font-size: 5vh;
 }
 
-h2
-{
+h2 {
 	margin: 0;
 }
 
-a
-{
+a {
 	
 }
 
-img
-{
+img {
 	width: 100%;
 }
 
-button
-{
+button {
 	cursor: pointer;
 	border: none;
 	border-radius: 5px;
 	background-color: #b1ffa8;
-	color: grey;
+	color: #707070;
 }
 
-button:hover
-{
+button:hover {
 	background-color: #91ff85;
-	color: grey;
+	color: #707070;
 }
 	
-.title
-{
-	color: white;
-	background-color: gray;
+.title {
+	color: #FFFFFF;
+	background-color: #707070;
 	height: 10%;
 }
 
-.displayView
-{
-	background-color: white;
+.displayView {
+	background-color: #FFFFFF;
 	float: right;
 	width: 80%;
-	height: 100%
+	height: 90%;
 }
 
-.sideBar
-{
+.sideBar {
 	float: left;
 	width: 20%;
-	height: 100%;
+	height: 90%;
 }
 
-.dataDisplay
-{
-	color: gray;
+.dataDisplay {
+	color: #707070;
 	padding: 0px 10px;
 	background-color: inherit;
 	font-size: 5vh;
 }
 
-.emptyMeter
-{
+.emptyMeter {
 	float: left;
 	height: 80%;
 	width: 5%;
-	background-color: green;
 	margin: 10px 10px 10px 10px;
 	/*border-radius: 999px;*/
 	border: 2px solid black;
 }
 
-.meterFill
-{
+.meterFill {
 	float: left;
 	height: 10%;
 	width: 100%;
-	background-color: #CFD8DC;
+	background-color: #E0E0E0;
 	margin: 0px 0px 0px 0px;
 	transition: 0.1s;
 	/*border-radius: 999px 999px 0px 0px;*/
 }
 
-.chartContainer
-{
+.chartContainer {
 	float: left;
 	height: 40%;
 	width: 65%;
 }
 
-.circle
-{
+.circle {
 	position: relative;
 	border-radius: 50%;
 	width: 100%;
 	height: auto;
 	padding-top: 100%;
-	background: white;
+	background: #FFFFFF;
 }
 
-.login
-{
+.login {
 	margin: auto;
 	width: 50%;
 	padding: 10px;
 	text-align: center;
-	background-color: #c5fab2;
+	background-color: #C5FAB2;
 	border-radius: 5px;
 }
 
-.meterLbl
-{
+.meterLbl {
 	text-align: center;
 }
 
-.statListWrapper
-{
+.statListWrapper {
 	cursor: pointer;
 	float: right;
 	height: 100%;
-
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.statListElement
-{
+.statListElement {
 	top: 50%;
 	float: right;
 	position: relative;
 	transform: translateY(-50%);
-	padding: 0.3em;
+	height: 80%;
 }
 
-.titleWrapper
-{
+.titleWrapper {
 	top: 50%;
 	float: left;
 	position: relative;
 	transform: translateY(-50%);
 }
 
-.statListWrapper:hover
-{
+.statListWrapper:hover {
 	cursor: pointer;
 }
 
-.confirmBtn
-{
+.confirmBtn {
 	background-color: #ff7d7d;
 }
 
-.confirmBtn:hover
-{
+.confirmBtn:hover {
 	background-color: #ff4545;
 }
 
-.incDecBtn
-{
+.incDecBtn {
 	width: 2em;
 }
 
-.drops
-{
+.drops {
 	opacity: 0;
 }
 
-#stationDash
-{
+#stationDash {
 	height: 100%;
 	float: right;
 	position: relative;
@@ -186,8 +172,7 @@ button:hover
 	transform: translateY(-50%);
 }
 
-#titleLbl
-{
+#titleLbl {
 	float: left;
 	height: 100%;
 }
@@ -196,28 +181,24 @@ button:hover
 	cursor: pointer;
 }
 
-#titleBar
-{
+#titleBar {
 	height: 10%;
 }
 
-#newStatBtn
-{
+#newStatBtn {
 	cursor: pointer;
 	border: none;
 	border-radius: 5px;
 	background-color: #b1ffa8;
-	color: grey;
+	color: #707070;
 }
 
-#newStatBtn:hover
-{
+#newStatBtn:hover {
 	background-color: #91ff85;
-	color: grey;
+	color: #707070;
 }
 
-#menuBar
-{
+#menuBar {
 	position: fixed;
 	right: 0;
 	z-index: 1;
@@ -227,14 +208,12 @@ button:hover
 	
 }
 
-#menuBar button
-{
+#menuBar button {
 	margin: 2px;
 }
 
-#sideBarBtn
-{
-	height: 4em;
+#sideBarBtn {
+	height: 100%;
 	width: 3em;	
 	font-size: large;
 	margin-left:1em;
@@ -243,59 +222,51 @@ button:hover
 
 }
 
-#waterTime
-{
+#waterTime {
 	width: 1em;
 }
 
-#sideImagesWrapper
-{
+#sideImagesWrapper {
 	float: left;
 	width: 20%;
-	height: 100%;
+	height: 90%;
 }
 
-#plantWrapper
-{
+#plantWrapper {
 	margin: auto;
 	width: 100%;
 	height:50%;
 }
 
-#cloudWrapper
-{
+#cloudWrapper {
 	margin: auto;
 	width: 80%;
 	height: 30%;
 }
 
-#cloud:hover
-{
+#cloud:hover {
 	/*cursor: pointer;*/
 	cursor: var(--cloudHoverStyle);
 }
 
-#dropWrapper
-{
+#dropWrapper {
 	margin: auto;
 	width: 70%;
 	height: 20%;
 }
 
-#logoWrapper
-{
+#logoWrapper {
 	height: 100%;
 	float: left;
 	margin-right: 1em;
 }
 
-#logoPng
-{
-	height: 100%
+#logo {
+	height: 80%;
+    padding: 10%;
 }
 
-@keyframes dropFade
-{
+@keyframes dropFade {
 	0% {opacity: 0;}
 	50% {opacity: 1;}
 	100% {opacity: 0;}
