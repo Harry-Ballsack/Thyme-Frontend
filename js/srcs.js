@@ -95,7 +95,7 @@ var myChart = new Chart(chart, {
 
 document.getElementById('Title').textContent = (USRNAME + '\'s Station');
 NEWSTATBTN.addEventListener("click", function(){ location.href = "registerStation.html"; });
-WATERBTN.addEventListener("click", rainAnimation);
+WATERBTN.addEventListener("click", waterRequest);
 
 /* ACTIONS */
 
@@ -186,15 +186,11 @@ async function setWaterTime(){
 
 async function waterRequest() {
 	let s = await getStation(selectedStation);
-	let state = await get_state(s.id, USRID, PASS);
-	console.log(state);
 	
-	if(state != "empty") {
-		setWaterInput(false);
+	if(s.state != "empty") {
 		await update_state("water", s.id, USRID, PASS);
-		setWaterInput(true);
-	} else {
-		setWaterInput(false);
+        rainAnimation();
+        refetchData(selectedStation).then(_ => { redraw().then(_ => {}); });
 	}
 }
 
@@ -209,9 +205,6 @@ function setWaterInput(inputEnable) {
 }
 
 async function rainAnimation() {
-    const s = await getStation(selectedStation);
-    await update_state("water", s.id, USRID, PASS);
-
 	let drop1 = document.getElementById("drop1");
 	let drop2 = document.getElementById("drop2");
 	let drop3 = document.getElementById("drop3");
@@ -281,7 +274,7 @@ async function redraw() {
 		stationList += "<div id=" + i + "w class=\"statListWrapper\">";
 		stationList += "<div id=" + i + "e class=\"statListElement\">";
         // Access cache directly as sensor data is not needed
-		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : stationCache[i].id) + "</b></p>";
+		stationList += "<p><b>" + (stationCache[i].name != undefined ? stationCache[i].name : "...") + "</b></p>";
 		stationList += "</div></div>";
 	}
 	
@@ -291,6 +284,7 @@ async function redraw() {
 		document.getElementById(i + "w").addEventListener("click", _ => {
             selectedStation = i;
             redraw().then(_ => {});
+            refetchData(selectedStation).then(_ => { redraw().then(_ => {}); });
         });
 	}
 	
@@ -351,7 +345,7 @@ async function redraw() {
 	    let newDataHum = [];
 	    let xAxisTimes = [];
 	
-	    for(let i = Math.max(0, statData.length - (12*6) - 1); i < statData.length; i += 1) {
+	    for(let i = statData.length - 1; i >= Math.max(0, statData.length - (12 * 6)); i -= 1) {
 		    newDataTemp.push(statData[i].temperature);
 		    newDataMoist.push(Math.min((statData[i].moisture) / 10, 100));
 		    newDataHum.push((statData[i].humidity));
@@ -436,10 +430,19 @@ async function getStation(i) {
     if (stationCache[i].data != undefined) {
         return stationCache[i];
     } else {
-	    const [data, state] = await Promise.all([get_data(stationCache[i].id, USRID, PASS), get_state(stationCache[i].id, USRID, PASS)]);
+	    const [data, state] = await Promise.all([get_data(stationCache[i].id, USRID, PASS, 100), get_state(stationCache[i].id, USRID, PASS)]);
         stationCache[i].data = data;
         stationCache[i].state = state;
         return stationCache[i];
+    }
+}
+
+// Update a station's state
+async function refetchData(i) {
+    if (i < stationCache.length && stationCache[i].data != undefined) {
+	    const [data, state] = await Promise.all([get_data(stationCache[i].id, USRID, PASS, 100), get_state(stationCache[i].id, USRID, PASS)]);
+        stationCache[i].data = data;
+        stationCache[i].state = state;
     }
 }
 
