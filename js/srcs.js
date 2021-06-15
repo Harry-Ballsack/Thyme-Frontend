@@ -2,7 +2,7 @@ const NEWSTATBTN = document.getElementById("newStatBtn");
 const WATERTIME = document.getElementById("waterTime");
 const MOISTLBL = document.getElementById("feuchtVar");
 const TEMPLBL = document.getElementById("tempVar");
-const TANKLBL = document.getElementById("wasserstandVar");
+const STATUSBL = document.getElementById("stationstatusVar");
 const WATERBTN = document.getElementById("cloud");
 const MENUBAR = document.getElementById("menuBar");
 
@@ -259,17 +259,27 @@ async function redraw() {
 		    document.getElementById(i + "w").style.setProperty("background-color", "grey");
 		    document.getElementById(i + "w").style.setProperty("color", "white");
 	    }
-
         const station = await getStation(selectedStation);
 
 	    document.getElementById(selectedStation + "w").style.setProperty("background-color", "white");
 	    document.getElementById(selectedStation + "w").style.setProperty("color", "grey");
 
 	    let statData = station.data;
-	
+		current_status=await get_state(station.id,USRID,PASS);
 	    MOISTLBL.innerHTML = statData[statData.length-1].moisture/10+" %";
 	    TEMPLBL.innerHTML = statData[statData.length-1].temperature + " °C";
-	    TANKLBL.innerHTML = statData[statData.length-1].tank_fill;
+		if(current_status=="water"){
+			STATUSBL.innerHTML = "bewässert";
+			STATUSBL.style="color:lightblue";
+		}else if(current_status=="idle"){
+			STATUSBL.innerHTML = "OK";
+			STATUSBL.style="color:lightgreen";
+		}
+		else{
+			STATUSBL.innerHTML = "Tank empty";
+			STATUSBL.style="color:lightred";
+		}
+	    
 	    WATERTIME.value = station.conf.watering_duration;
 	
 	    let newDataTemp = [];
