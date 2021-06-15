@@ -260,16 +260,16 @@ function setActivePlantSize(potSize) {
 
 async function saveNewConf() {
 	let s = await getStation(selectedStation);
-	let currentConf = s.conf;
 	
 	if(NUTZPFLBTN.checked) {
-		currentConf.moisture_threshold = 650;
+		s.conf.moisture_threshold = 650;
 	} else if(ZIMMPFLBTN.checked) {
-		currentConf.moisture_threshold = 400;
+		s.conf.moisture_threshold = 400;
 	}
 	
-	currentConf.watering_duration = WATERTIME.value;
-	console.log(currentConf);
+	s.conf.watering_duration = WATERTIME.value;
+	
+	await update_conf(s.conf, s.id, USRID, PASS);
 }
 
 /* RENDERING */
