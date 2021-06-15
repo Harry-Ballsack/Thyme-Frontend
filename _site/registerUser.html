@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Thyme Register</title>
+		<meta charset="UTF-8">
+		<script src="js/defloc.js"></script>
+		<script src="js/stomata.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id="titleBar" onclick="homeLink()">
+			<div id="logoWrapper">
+				<img id="logoPng" src="img/logoNoText.png" alt="logo">
+			</div>
+			<div id="Titlew" class="titleWrapper">
+				<h1 id="Title" class="title">Thyme</h1>
+			</div>
+		</div>
+		<div id="loginField" class="login" style="color: black;">
+			<label for="nameFld">Name:</label><br />
+			<input id="nameFld" type="text"><br />
+			
+			<label for="userFld">Email:</label><br />
+			<input id="userFld" type="email"><br />
+			
+			<label for="passwdFld1">Password:</label><br />
+			<input id="passwdFld1" type="password"><br />
+			<label for="passwdFld2">Repeat Password:</label><br />
+			<input id="passwdFld2" type="password"><br />
+			
+			<input id="registerBtn" type="button" value="Register Station"><br />
+			<p id="registerError" style="color:#ff7d7d;"></p>
+		</div>
+	</body>
+	<script src="js/register.js"></script>
+</html>

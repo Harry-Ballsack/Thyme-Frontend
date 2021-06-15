@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thyme</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+    <script src="js/defloc.js"></script>
+    <script src="js/stomata.js"></script>
+</head>
+<body>
+    <h1>Thyme</h1>
+
+    <h2>Register User</h2>
+    <p>
+        Name <input type="name" id="reg_name_fld"><br>
+        Email <input type="email" id="reg_login_fld"><br>
+        Password <input type="password" id="reg_pass_fld"><br>
+        <input type="button" id="register_btn" value="Register"> <a id="register_lbl"></a>
+    </p>
+
+    <h2>User</h2>
+    <p>
+        Email <input type="email" id="login_fld"><br>
+        Password <input type="password" id="pass_fld"><br>
+        <input type="button" id="login_btn" value="Login"> <a id="login_lbl"></a>
+        <p>
+            <b>Name: </b><a id="name_lbl"></a><br>
+            <b>Stations: </b><a id="stations_lbl"></a>
+        </p>
+    </p>
+
+    <h2>Station</h2>
+    <p>
+        ID <input type="text" id="station_fld"><br>
+        <input type="button" id="add_btn" value="Add">
+        <input type="button" id="remove_btn" value="Remove">
+        <input type="button" id="fetch_btn" value="Fetch">
+        <p>
+            <b>Name: </b><a id="station_lbl"></a><br>
+            <b>State: </b><input type="text" id="state_fld">
+            <input type="button" id="state_btn" value="Update"><br>
+            <b>Config: </b><br><textarea type="text" rows="5" cols="60" id="conf_fld"></textarea><br>
+            <input type="button" id="conf_btn" value="Update">
+        </p>
+        <table style="border: 1px solid #000000;">
+            <thead>
+                <tr>
+                    <td>Time</td>
+                    <td>Moisture</td>
+                    <td>Temperature</td>
+                    <td>Tank Empty</td>
+                </tr>
+            </thead>
+            <tbody id="data_div"></tbody>
+        </table>
+    </p>
+
+    <script src="js/example.js"></script>
+</body>
+</html>
