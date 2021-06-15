@@ -186,7 +186,7 @@ async function waterRequest() {
 	
 	if(state != "empty") {
 		setWaterInput(false);
-		await set_state("water", s.id, USRID, PASS);
+		await update_state("water", s.id, USRID, PASS);
 		setWaterInput(true);
 	} else {
 		setWaterInput(false);
