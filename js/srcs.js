@@ -300,8 +300,8 @@ async function redraw() {
 
 	    let statData = station.data;
 		const current_status = station.state;
-	    MOISTLBL.innerHTML = statData[statData.length - 1].moisture / 10 + " %";
-	    TEMPLBL.innerHTML = statData[statData.length - 1].temperature + " °C";
+	    MOISTLBL.innerHTML = statData[0].moisture / 10 + " %";
+	    TEMPLBL.innerHTML = statData[0].temperature + " °C";
 		if (current_status=="water") {
 			STATUSBL.innerHTML = "bewässert";
 			STATUSBL.style = "color: #C1FFFD";
