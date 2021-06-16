@@ -31,9 +31,9 @@ async function registerRequest() {
 	sessionStorage.setItem("name", userName);
 	sessionStorage.setItem("userID", userId);
 	sessionStorage.setItem("passwd", pass1);
-	location.href = "index.html";
+	location.href = "/";
 }
 
 function homeLink() {
-	location.href = "index.html";
+	location.href = "/";
 }

@@ -28,6 +28,6 @@ async function loginRequest() {
 	sessionStorage.setItem("userID", userFld.value);
 	sessionStorage.setItem("passwd", passwdFld.value);
 	if(userName != undefined) {
-		location.href = "index.html";
+		location.href = "/";
 	}
 }

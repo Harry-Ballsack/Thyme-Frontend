@@ -69,16 +69,16 @@ button:hover {
 
 .dataDisplay {
 	color: #707070;
-	padding: 0px 10px;
+	padding: 0px 20px;
 	background-color: inherit;
 	font-size: 5vh;
 }
 
 .emptyMeter {
 	float: left;
-	height: 80%;
+	height: 96%;
 	width: 5%;
-	margin: 10px 10px 10px 10px;
+	margin: 10px 20px 10px 10px;
 	/*border-radius: 999px;*/
 	border: 2px solid black;
 }

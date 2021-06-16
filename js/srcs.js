@@ -227,7 +227,7 @@ async function rainAnimation() {
 }
 
 function homeLink() {
-	location.href = "index.html";
+	location.href = "/";
 }
 
 function setActivePlantSize(potSize) {
