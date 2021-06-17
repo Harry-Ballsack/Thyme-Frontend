@@ -381,8 +381,8 @@ async function redraw() {
 	    myChart.data.labels = xAxisTimes;
 	    myChart.update();
 	
-	    setMeterLevel('meterFillWater', Math.max(Math.min((statData[statData.length - 1].moisture)/10, 100), 0));
-	    setMeterLevel('meterFillTemp', statData[statData.length - 1].temperature);
+	    setMeterLevel('meterFillWater', Math.max(Math.min((statData[0].moisture)/10, 100), 0));
+	    setMeterLevel('meterFillTemp', statData[0].temperature);
     }
 }
 
