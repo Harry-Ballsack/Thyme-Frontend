@@ -74,15 +74,16 @@
 				<button id="newDryBtn" onclick="setDryVal()">Neuen Trockenwert kalibrieren</button><br />
 				<button id="newWetBtn" onclick="setWetVal()">Neuen Nasswert kalibrieren</button><br />
 				<button id="threshholdBtn" onclick="setThreshhold()">Neuen Schwellenwert setzen</button><br />
-				<button id="deleteStat" class="confirmBtn" onclick="deleteCurrentStation()">Diese Station Löschen</button><br />
+			
 				<div id="durationWrapper">
 					<label for="waterTime">Bewässerungszeit in s: </label><br />
 					<input type="text" name="waterTime" id="waterTime" value="0">
 					<button id="timeInc" class="incDecBtn" onclick="addToWaterTime(1)">+</button>
 					<button id="timeDec" class="incDecBtn" onclick="addToWaterTime(-1)">-</button>
-					<button id="timeConf" onclick="setWaterTime()">Anwenden</button>
+					<!--<button id="timeConf" onclick="setWaterTime()">Anwenden</button>-->
 				</div>
-				<button id="saveSettings" onclick="saveNewConf()">Einstellungen speichern</button>
+				<button id="saveSettings" onclick="saveNewConf()">Einstellungen speichern</button><br />
+				<button id="deleteStat" class="confirmBtn" onclick="deleteCurrentStation()">Diese Station Löschen</button>
 			
 				<h2>Accounteinstellungen</h2>
 				<button id="logout" class="confirmBtn" onclick="logout()">Ausloggen</button><br />
